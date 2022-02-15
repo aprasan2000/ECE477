@@ -5,6 +5,7 @@
 #include "driver/gpio.h"
 #include "driver/adc.h"
 #include "esp_adc_cal.h"
+#include "driver/mcpwm.h"
 
 #define ESP_INTR_FLAG_DEFAULT 0
 #define V_REF 1100
@@ -59,11 +60,11 @@ void readPulse(void* arg)
   uint32_t reading, voltage;
   while(1)
   {
-    vTaskDelay(200/portTICK_RATE_MS); // read delay
+    vTaskDelay(100/portTICK_RATE_MS); // read delay
     reading = adc1_get_raw(ADC1_CHANNEL_6);
     voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
 	gettimeofday(&current_time, NULL);
-    printf("%ld ms %d mVolts\n", current_time.tv_usec, voltage);
+    printf("%lu.%lums %dmV\n",current_time.tv_sec, (current_time.tv_usec /10000), voltage);
   }
 }
 
@@ -80,8 +81,11 @@ void app_main(void)
     gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT);
     xTaskCreate(blink1Sec, "blink LED", 1024, NULL, 1, NULL); // 1024=size, NULL=param, 1=lowest priority, NULL=handler?
 
-    // Interrupt
+    // Interrupt (contains buzzer via PWM)
     // Setting up interrupt and GPIO4 for input
+	mcpwm_gpio_init(0, MCPWM0A, GPIO_NUM_13);
+	
+	
     gpio_pad_select_gpio(GPIO_NUM_4);
     gpio_set_direction(GPIO_NUM_4, GPIO_MODE_INPUT);
     gpio_set_pull_mode(GPIO_NUM_4, GPIO_PULLUP_ONLY);
@@ -91,5 +95,5 @@ void app_main(void)
     xTaskCreate(button_task, "button_task", 4096, NULL, 10, &ISR);
 
     // ADC
-    xTaskCreate(readPulse, "read pulse values", 2048, NULL, 5, NULL);
+    xTaskCreate(readPulse, "read pulse values", 2048, NULL, 10, NULL);
 }
