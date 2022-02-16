@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Noggin)(type Legacy)(uri ${KIPRJMOD}/Noggin.lib)(options "")(descr ""))
+)
