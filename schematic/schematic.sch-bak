@@ -16,168 +16,506 @@ $EndDescr
 $Comp
 L pspice:OPAMP OpAmp1
 U 1 1 61FD4970
-P 2150 1350
-F 0 "OpAmp1" H 2494 1396 50  0001 L CNN
-F 1 "OPAMP" H 2494 1350 50  0000 L CNN
-F 2 "" H 2150 1350 50  0001 C CNN
-F 3 "~" H 2150 1350 50  0001 C CNN
-	1    2150 1350
+P -1300 1400
+F 0 "OpAmp1" H -956 1446 50  0001 L CNN
+F 1 "OPAMP" H -956 1400 50  0000 L CNN
+F 2 "" H -1300 1400 50  0001 C CNN
+F 3 "~" H -1300 1400 50  0001 C CNN
+	1    -1300 1400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1850 1250 1400 1250
-Text Label 1400 1250 0    50   ~ 0
+	-1600 1300 -2050 1300
+Text Label -2050 1300 0    50   ~ 0
 3V
 $Comp
 L pspice:R R1
 U 1 1 61FD5327
-P 1900 2400
-F 0 "R1" H 1968 2446 50  0000 L CNN
-F 1 "200" H 1968 2355 50  0000 L CNN
-F 2 "" H 1900 2400 50  0001 C CNN
-F 3 "~" H 1900 2400 50  0001 C CNN
-	1    1900 2400
+P -1550 2450
+F 0 "R1" H -1482 2496 50  0000 L CNN
+F 1 "200" H -1482 2405 50  0000 L CNN
+F 2 "" H -1550 2450 50  0001 C CNN
+F 3 "~" H -1550 2450 50  0001 C CNN
+	1    -1550 2450
 	1    0    0    -1  
 $EndComp
-Text GLabel 1900 2150 0    50   Input ~ 0
+Text GLabel -1550 2200 0    50   Input ~ 0
 Vin=5V
 Wire Wire Line
-	1900 2650 1900 2700
-Connection ~ 1900 2700
+	-1550 2700 -1550 2750
+Connection ~ -1550 2750
 Wire Wire Line
-	1900 2700 1900 2800
+	-1550 2750 -1550 2850
 Wire Wire Line
-	1900 2700 2250 2700
-Text GLabel 2250 2700 2    50   Input ~ 0
+	-1550 2750 -1200 2750
+Text GLabel -1200 2750 2    50   Input ~ 0
 Vout=3V
 $Comp
 L pspice:R R2
 U 1 1 61FD5B76
-P 1900 3050
-F 0 "R2" H 1968 3096 50  0000 L CNN
-F 1 "300" H 1968 3005 50  0000 L CNN
-F 2 "" H 1900 3050 50  0001 C CNN
-F 3 "~" H 1900 3050 50  0001 C CNN
-	1    1900 3050
+P -1550 3100
+F 0 "R2" H -1482 3146 50  0000 L CNN
+F 1 "300" H -1482 3055 50  0000 L CNN
+F 2 "" H -1550 3100 50  0001 C CNN
+F 3 "~" H -1550 3100 50  0001 C CNN
+	1    -1550 3100
 	1    0    0    -1  
 $EndComp
 $Comp
 L pspice:0 GND
 U 1 1 61FD6CC4
-P 1900 3350
-F 0 "GND" H 1978 3333 50  0000 L CNN
-F 1 "0" H 1900 3439 50  0001 C CNN
-F 2 "" H 1900 3350 50  0001 C CNN
-F 3 "~" H 1900 3350 50  0001 C CNN
-	1    1900 3350
+P -1550 3400
+F 0 "GND" H -1472 3383 50  0000 L CNN
+F 1 "0" H -1550 3489 50  0001 C CNN
+F 2 "" H -1550 3400 50  0001 C CNN
+F 3 "~" H -1550 3400 50  0001 C CNN
+	1    -1550 3400
 	1    0    0    -1  
 $EndComp
-Text Notes 2350 3900 0    50   ~ 0
+$Comp
+L Noggin:ESP32-WROOM-32D ANT?
+U 1 1 620D2920
+P 6150 1750
+F 0 "ANT?" H 6850 2015 50  0000 C CNN
+F 1 "ESP32-WROOM-32D" H 6850 1924 50  0000 C CNN
+F 2 "ESP32WROOM32D" H 7400 1850 50  0001 L CNN
+F 3 "https://www.mouser.com/datasheet/2/891/esp32-wroom-32d_esp32-wroom-32u_datasheet_en-1365844.pdf" H 7400 1750 50  0001 L CNN
+F 4 "WiFi Modules (802.11) SMD Module, ESP32-D0WD, 32Mbits SPI flash, UART mode, PCB antenna" H 7400 1650 50  0001 L CNN "Description"
+F 5 "3.1" H 7400 1550 50  0001 L CNN "Height"
+F 6 "Espressif Systems" H 7400 1450 50  0001 L CNN "Manufacturer_Name"
+F 7 "ESP32-WROOM-32D" H 7400 1350 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "N/A" H 7400 1250 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/Espressif-Systems/ESP32-WROOM-32D?qs=MLItCLRbWszx2KabkKPu5A%3D%3D" H 7400 1150 50  0001 L CNN "Mouser Price/Stock"
+	1    6150 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Noggin:SEN-11574 U?
+U 1 1 620D4740
+P 8750 1950
+F 0 "U?" H 9640 1996 50  0000 L CNN
+F 1 "SEN-11574" H 9640 1905 50  0000 L CNN
+F 2 "" H 8750 1900 50  0001 C CNN
+F 3 "" H 8750 1900 50  0001 C CNN
+	1    8750 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D?
+U 1 1 620D5497
+P 5450 2750
+F 0 "D?" H 5443 2966 50  0000 C CNN
+F 1 "LED" H 5443 2875 50  0000 C CNN
+F 2 "" H 5450 2750 50  0001 C CNN
+F 3 "~" H 5450 2750 50  0001 C CNN
+	1    5450 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 620D6E37
+P 7950 1200
+F 0 "#PWR?" H 7950 950 50  0001 C CNN
+F 1 "GND" H 7955 1027 50  0000 C CNN
+F 2 "" H 7950 1200 50  0001 C CNN
+F 3 "" H 7950 1200 50  0001 C CNN
+	1    7950 1200
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 620D7784
+P 5150 1450
+F 0 "#PWR?" H 5150 1300 50  0001 C CNN
+F 1 "+3.3V" H 5165 1623 50  0000 C CNN
+F 2 "" H 5150 1450 50  0001 C CNN
+F 3 "" H 5150 1450 50  0001 C CNN
+	1    5150 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 1850 5150 1850
+Wire Wire Line
+	5150 1850 5150 1550
+Wire Wire Line
+	6150 2750 5600 2750
+$Comp
+L Device:LED D?
+U 1 1 620D647E
+P 5450 2400
+F 0 "D?" H 5443 2616 50  0000 C CNN
+F 1 "LED" H 5443 2525 50  0000 C CNN
+F 2 "" H 5450 2400 50  0001 C CNN
+F 3 "~" H 5450 2400 50  0001 C CNN
+	1    5450 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6150 2650 5600 2650
+Wire Wire Line
+	5600 2650 5600 2400
+Wire Wire Line
+	5300 2400 4850 2400
+Connection ~ 4850 2400
+Wire Wire Line
+	4850 2400 4850 2750
+Wire Wire Line
+	5300 2750 4850 2750
+Wire Wire Line
+	7550 1950 8350 1950
+Wire Wire Line
+	8350 1800 8050 1800
+Wire Wire Line
+	8350 2100 7750 2100
+Wire Wire Line
+	7750 2100 7750 1550
+Wire Wire Line
+	7750 1550 5150 1550
+Connection ~ 5150 1550
+Wire Wire Line
+	5150 1550 5150 1450
+Wire Wire Line
+	8050 1200 7950 1200
+Wire Wire Line
+	4850 1200 7950 1200
+Wire Wire Line
+	4850 1200 4850 2400
+Connection ~ 7950 1200
+Text Notes 7150 4350 0    50   ~ 0
 Button Debouncing\n
 $Comp
 L power:+3.3V #PWR?
-U 1 1 6207136F
-P 1850 4000
-F 0 "#PWR?" H 1850 3850 50  0001 C CNN
-F 1 "+3.3V" H 1865 4173 50  0000 C CNN
-F 2 "" H 1850 4000 50  0001 C CNN
-F 3 "" H 1850 4000 50  0001 C CNN
-	1    1850 4000
+U 1 1 62104884
+P 6600 4200
+F 0 "#PWR?" H 6600 4050 50  0001 C CNN
+F 1 "+3.3V" H 6615 4373 50  0000 C CNN
+F 2 "" H 6600 4200 50  0001 C CNN
+F 3 "" H 6600 4200 50  0001 C CNN
+	1    6600 4200
 	1    0    0    -1  
 $EndComp
 $Comp
 L 74xx:74HC14 U?
-U 1 1 6207415B
-P 1150 4650
-F 0 "U?" H 1150 4333 50  0000 C CNN
-F 1 "74HC14" H 1150 4424 50  0000 C CNN
-F 2 "" H 1150 4650 50  0001 C CNN
-F 3 "http://www.ti.com/lit/gpn/sn74HC14" H 1150 4650 50  0001 C CNN
-	1    1150 4650
+U 1 1 6210488A
+P 5900 4850
+F 0 "U?" H 5900 4533 50  0000 C CNN
+F 1 "74HC14" H 5900 4624 50  0000 C CNN
+F 2 "" H 5900 4850 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74HC14" H 5900 4850 50  0001 C CNN
+	1    5900 4850
 	-1   0    0    1   
 $EndComp
-Text Notes 900  4950 0    50   ~ 0
+Text Notes 5650 5150 0    50   ~ 0
 Schmitt Trigger\n
 $Comp
 L Device:R R?
-U 1 1 62076385
-P 1850 4150
-F 0 "R?" H 1920 4196 50  0000 L CNN
-F 1 "R" H 1920 4105 50  0000 L CNN
-F 2 "" V 1780 4150 50  0001 C CNN
-F 3 "~" H 1850 4150 50  0001 C CNN
-	1    1850 4150
+U 1 1 62104891
+P 6600 4350
+F 0 "R?" H 6670 4396 50  0000 L CNN
+F 1 "R" H 6670 4305 50  0000 L CNN
+F 2 "" V 6530 4350 50  0001 C CNN
+F 3 "~" H 6600 4350 50  0001 C CNN
+	1    6600 4350
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
-U 1 1 6207695D
-P 2300 4650
-F 0 "R?" V 2093 4650 50  0000 C CNN
-F 1 "R" V 2184 4650 50  0000 C CNN
-F 2 "" V 2230 4650 50  0001 C CNN
-F 3 "~" H 2300 4650 50  0001 C CNN
-	1    2300 4650
+U 1 1 62104897
+P 7050 4850
+F 0 "R?" V 6843 4850 50  0000 C CNN
+F 1 "R" V 6934 4850 50  0000 C CNN
+F 2 "" V 6980 4850 50  0001 C CNN
+F 3 "~" H 7050 4850 50  0001 C CNN
+	1    7050 4850
 	0    1    1    0   
 $EndComp
 $Comp
 L Switch:SW_MEC_5G SW?
-U 1 1 62077CD9
-P 2950 4650
-F 0 "SW?" H 2950 4935 50  0000 C CNN
-F 1 "SW_MEC_5G" H 2950 4844 50  0000 C CNN
-F 2 "" H 2950 4850 50  0001 C CNN
-F 3 "http://www.apem.com/int/index.php?controller=attachment&id_attachment=488" H 2950 4850 50  0001 C CNN
-	1    2950 4650
+U 1 1 6210489D
+P 7700 4850
+F 0 "SW?" H 7700 5135 50  0000 C CNN
+F 1 "SW_MEC_5G" H 7700 5044 50  0000 C CNN
+F 2 "" H 7700 5050 50  0001 C CNN
+F 3 "http://www.apem.com/int/index.php?controller=attachment&id_attachment=488" H 7700 5050 50  0001 C CNN
+	1    7700 4850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:CP1 C?
-U 1 1 6207934D
-P 2650 5050
-F 0 "C?" V 2902 5050 50  0000 C CNN
-F 1 "CP1" V 2811 5050 50  0000 C CNN
-F 2 "" H 2650 5050 50  0001 C CNN
-F 3 "~" H 2650 5050 50  0001 C CNN
-	1    2650 5050
+U 1 1 621048A3
+P 7400 5250
+F 0 "C?" V 7652 5250 50  0000 C CNN
+F 1 "CP1" V 7561 5250 50  0000 C CNN
+F 2 "" H 7400 5250 50  0001 C CNN
+F 3 "~" H 7400 5250 50  0001 C CNN
+	1    7400 5250
 	0    -1   -1   0   
 $EndComp
 $Comp
 L power:GNDREF #PWR?
-U 1 1 6207A1A4
-P 3600 5050
-F 0 "#PWR?" H 3600 4800 50  0001 C CNN
-F 1 "GNDREF" H 3605 4877 50  0000 C CNN
-F 2 "" H 3600 5050 50  0001 C CNN
-F 3 "" H 3600 5050 50  0001 C CNN
-	1    3600 5050
+U 1 1 621048A9
+P 8350 5250
+F 0 "#PWR?" H 8350 5000 50  0001 C CNN
+F 1 "GNDREF" H 8355 5077 50  0000 C CNN
+F 2 "" H 8350 5250 50  0001 C CNN
+F 3 "" H 8350 5250 50  0001 C CNN
+	1    8350 5250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1850 4300 1850 4650
+	6600 4500 6600 4850
 Wire Wire Line
-	1850 4650 1450 4650
+	6600 4850 6200 4850
 Wire Wire Line
-	1850 4650 2050 4650
-Connection ~ 1850 4650
+	6600 4850 6800 4850
+Connection ~ 6600 4850
 Wire Wire Line
-	2450 4650 2750 4650
+	7200 4850 7500 4850
 Wire Wire Line
-	3150 4650 3250 4650
+	7900 4850 8000 4850
 Wire Wire Line
-	3600 4650 3600 5050
+	8350 4850 8350 5250
 Wire Wire Line
-	2800 5050 3250 5050
+	7550 5250 8000 5250
 Wire Wire Line
-	2500 5050 2050 5050
+	7250 5250 6800 5250
 Wire Wire Line
-	2050 5050 2050 4650
-Connection ~ 2050 4650
+	6800 5250 6800 4850
+Connection ~ 6800 4850
 Wire Wire Line
-	2050 4650 2150 4650
+	6800 4850 6900 4850
 Wire Wire Line
-	3250 5050 3250 4650
-Connection ~ 3250 4650
+	8000 5250 8000 4850
+Connection ~ 8000 4850
 Wire Wire Line
-	3250 4650 3600 4650
+	8000 4850 8350 4850
+Wire Wire Line
+	5600 4850 5600 2850
+Wire Wire Line
+	5600 2850 6150 2850
+$Comp
+L Noggin:PS1240P02BT LS?
+U 1 1 621084ED
+P 8500 2400
+F 0 "LS?" H 9128 2396 50  0000 L CNN
+F 1 "PS1240P02BT" H 9128 2305 50  0000 L CNN
+F 2 "PS1240P02BT" H 9150 2500 50  0001 L CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 9150 2400 50  0001 L CNN
+F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 9150 2300 50  0001 L CNN "Description"
+F 5 "TDK" H 9150 2100 50  0001 L CNN "Manufacturer_Name"
+F 6 "PS1240P02BT" H 9150 2000 50  0001 L CNN "Manufacturer_Part_Number"
+F 7 "810-PS1240P02BT" H 9150 1900 50  0001 L CNN "Mouser Part Number"
+F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 9150 1800 50  0001 L CNN "Mouser Price/Stock"
+F 9 "PS1240P02BT" H 9150 1700 50  0001 L CNN "Arrow Part Number"
+F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 9150 1600 50  0001 L CNN "Arrow Price/Stock"
+	1    8500 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8500 2500 8050 2500
+Wire Wire Line
+	8050 1200 8050 1800
+Connection ~ 8050 1800
+Wire Wire Line
+	8050 1800 8050 2500
+$Comp
+L Device:R R?
+U 1 1 6210A8A7
+P 7850 2350
+F 0 "R?" V 7643 2350 50  0000 C CNN
+F 1 "1K" V 7734 2350 50  0000 C CNN
+F 2 "" V 7780 2350 50  0001 C CNN
+F 3 "~" H 7850 2350 50  0001 C CNN
+	1    7850 2350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7550 2350 7700 2350
+Wire Wire Line
+	8000 2350 8500 2350
+Wire Wire Line
+	8500 2350 8500 2400
+Text Notes 2900 1150 0    50   ~ 0
+Supervisor\n
+Text Notes 6700 1000 0    50   ~ 0
+Wearer\n
+$Comp
+L Device:LED D?
+U 1 1 62113A04
+P 1950 2200
+F 0 "D?" H 1943 2416 50  0000 C CNN
+F 1 "LED" H 1943 2325 50  0000 C CNN
+F 2 "" H 1950 2200 50  0001 C CNN
+F 3 "~" H 1950 2200 50  0001 C CNN
+	1    1950 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6211423A
+P 2000 1350
+F 0 "#PWR?" H 2000 1200 50  0001 C CNN
+F 1 "+3.3V" H 2015 1523 50  0000 C CNN
+F 2 "" H 2000 1350 50  0001 C CNN
+F 3 "" H 2000 1350 50  0001 C CNN
+	1    2000 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62114AE7
+P 2300 1050
+F 0 "#PWR?" H 2300 800 50  0001 C CNN
+F 1 "GND" H 2305 877 50  0000 C CNN
+F 2 "" H 2300 1050 50  0001 C CNN
+F 3 "" H 2300 1050 50  0001 C CNN
+	1    2300 1050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2350 1700 2300 1700
+Wire Wire Line
+	2350 1800 2000 1800
+Wire Wire Line
+	2000 1800 2000 1350
+Wire Wire Line
+	2350 2200 2100 2200
+Wire Wire Line
+	2300 1050 2300 1150
+Wire Wire Line
+	1800 1150 2300 1150
+Connection ~ 2300 1150
+Wire Wire Line
+	2300 1150 2300 1700
+Wire Wire Line
+	1800 1150 1800 2200
+$Comp
+L Noggin:ESP32-WROOM-32D ANT?
+U 1 1 62112557
+P 2350 1700
+F 0 "ANT?" H 3050 1965 50  0000 C CNN
+F 1 "ESP32-WROOM-32D" H 3050 1874 50  0000 C CNN
+F 2 "ESP32WROOM32D" H 3600 1800 50  0001 L CNN
+F 3 "https://www.mouser.com/datasheet/2/891/esp32-wroom-32d_esp32-wroom-32u_datasheet_en-1365844.pdf" H 3600 1700 50  0001 L CNN
+F 4 "WiFi Modules (802.11) SMD Module, ESP32-D0WD, 32Mbits SPI flash, UART mode, PCB antenna" H 3600 1600 50  0001 L CNN "Description"
+F 5 "3.1" H 3600 1500 50  0001 L CNN "Height"
+F 6 "Espressif Systems" H 3600 1400 50  0001 L CNN "Manufacturer_Name"
+F 7 "ESP32-WROOM-32D" H 3600 1300 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "N/A" H 3600 1200 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/Espressif-Systems/ESP32-WROOM-32D?qs=MLItCLRbWszx2KabkKPu5A%3D%3D" H 3600 1100 50  0001 L CNN "Mouser Price/Stock"
+	1    2350 1700
+	1    0    0    -1  
+$EndComp
+Text Notes 3350 4250 0    50   ~ 0
+Button Debouncing\n
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6213F0C2
+P 2800 4100
+F 0 "#PWR?" H 2800 3950 50  0001 C CNN
+F 1 "+3.3V" H 2815 4273 50  0000 C CNN
+F 2 "" H 2800 4100 50  0001 C CNN
+F 3 "" H 2800 4100 50  0001 C CNN
+	1    2800 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC14 U?
+U 1 1 6213F0C8
+P 2100 4750
+F 0 "U?" H 2100 4433 50  0000 C CNN
+F 1 "74HC14" H 2100 4524 50  0000 C CNN
+F 2 "" H 2100 4750 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74HC14" H 2100 4750 50  0001 C CNN
+	1    2100 4750
+	-1   0    0    1   
+$EndComp
+Text Notes 1850 5050 0    50   ~ 0
+Schmitt Trigger\n
+$Comp
+L Device:R R?
+U 1 1 6213F0CF
+P 2800 4250
+F 0 "R?" H 2870 4296 50  0000 L CNN
+F 1 "R" H 2870 4205 50  0000 L CNN
+F 2 "" V 2730 4250 50  0001 C CNN
+F 3 "~" H 2800 4250 50  0001 C CNN
+	1    2800 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6213F0D5
+P 3250 4750
+F 0 "R?" V 3043 4750 50  0000 C CNN
+F 1 "R" V 3134 4750 50  0000 C CNN
+F 2 "" V 3180 4750 50  0001 C CNN
+F 3 "~" H 3250 4750 50  0001 C CNN
+	1    3250 4750
+	0    1    1    0   
+$EndComp
+$Comp
+L Switch:SW_MEC_5G SW?
+U 1 1 6213F0DB
+P 3900 4750
+F 0 "SW?" H 3900 5035 50  0000 C CNN
+F 1 "SW_MEC_5G" H 3900 4944 50  0000 C CNN
+F 2 "" H 3900 4950 50  0001 C CNN
+F 3 "http://www.apem.com/int/index.php?controller=attachment&id_attachment=488" H 3900 4950 50  0001 C CNN
+	1    3900 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C?
+U 1 1 6213F0E1
+P 3600 5150
+F 0 "C?" V 3852 5150 50  0000 C CNN
+F 1 "CP1" V 3761 5150 50  0000 C CNN
+F 2 "" H 3600 5150 50  0001 C CNN
+F 3 "~" H 3600 5150 50  0001 C CNN
+	1    3600 5150
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GNDREF #PWR?
+U 1 1 6213F0E7
+P 4550 5150
+F 0 "#PWR?" H 4550 4900 50  0001 C CNN
+F 1 "GNDREF" H 4555 4977 50  0000 C CNN
+F 2 "" H 4550 5150 50  0001 C CNN
+F 3 "" H 4550 5150 50  0001 C CNN
+	1    4550 5150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2800 4400 2800 4750
+Wire Wire Line
+	2800 4750 2400 4750
+Wire Wire Line
+	2800 4750 3000 4750
+Connection ~ 2800 4750
+Wire Wire Line
+	3400 4750 3700 4750
+Wire Wire Line
+	4100 4750 4200 4750
+Wire Wire Line
+	4550 4750 4550 5150
+Wire Wire Line
+	3750 5150 4200 5150
+Wire Wire Line
+	3450 5150 3000 5150
+Wire Wire Line
+	3000 5150 3000 4750
+Connection ~ 3000 4750
+Wire Wire Line
+	3000 4750 3100 4750
+Wire Wire Line
+	4200 5150 4200 4750
+Connection ~ 4200 4750
+Wire Wire Line
+	4200 4750 4550 4750
+Wire Wire Line
+	2350 2500 1800 2500
+Wire Wire Line
+	1800 2500 1800 4750
 $EndSCHEMATC
