@@ -90,6 +90,17 @@ F 9 "https://www.mouser.co.uk/ProductDetail/Espressif-Systems/ESP32-WROOM-32D?qs
 	1    0    0    -1  
 $EndComp
 $Comp
+L Noggin:SEN-11574 U?
+U 1 1 620D4740
+P 8750 2650
+F 0 "U?" H 9640 2696 50  0000 L CNN
+F 1 "SEN-11574" H 9640 2605 50  0000 L CNN
+F 2 "" H 8750 2600 50  0001 C CNN
+F 3 "" H 8750 2600 50  0001 C CNN
+	1    8750 2650
+	1    0    0    -1  
+$EndComp
+$Comp
 L Device:LED D?
 U 1 1 620D5497
 P 5450 3450
@@ -150,6 +161,12 @@ Wire Wire Line
 	4850 3100 4850 3450
 Wire Wire Line
 	5300 3450 4850 3450
+Wire Wire Line
+	7550 2650 8350 2650
+Wire Wire Line
+	8350 2500 8050 2500
+Wire Wire Line
+	8350 2800 7750 2800
 Wire Wire Line
 	7750 2800 7750 2250
 Wire Wire Line
@@ -261,6 +278,11 @@ F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 9150 2300 
 $EndComp
 Wire Wire Line
 	8500 3200 8050 3200
+Wire Wire Line
+	8050 1900 8050 2500
+Connection ~ 8050 2500
+Wire Wire Line
+	8050 2500 8050 3200
 $Comp
 L Device:R R?
 U 1 1 6210A8A7
@@ -423,6 +445,4 @@ Wire Wire Line
 	5500 6100 5600 6100
 Wire Wire Line
 	5500 3550 6150 3550
-Wire Wire Line
-	8050 1900 8050 3200
 $EndSCHEMATC
