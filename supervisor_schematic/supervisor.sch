@@ -57,22 +57,22 @@ Wire Wire Line
 Wire Wire Line
 	4700 3000 4450 3000
 $Comp
-L Device:LED D?
+L Device:LED D1
 U 1 1 62152961
 P 4450 3400
-F 0 "D?" H 4443 3616 50  0000 C CNN
-F 1 "LED" H 4443 3525 50  0000 C CNN
+F 0 "D1" H 4443 3616 50  0000 C CNN
+F 1 "Green LED" H 4443 3525 50  0000 C CNN
 F 2 "" H 4450 3400 50  0001 C CNN
 F 3 "~" H 4450 3400 50  0001 C CNN
 	1    4450 3400
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:LED D?
+L Device:LED D2
 U 1 1 62153081
 P 4000 3500
-F 0 "D?" H 3993 3716 50  0000 C CNN
-F 1 "LED" H 3993 3625 50  0000 C CNN
+F 0 "D2" H 3993 3716 50  0000 C CNN
+F 1 "Red LED" H 3993 3625 50  0000 C CNN
 F 2 "" H 4000 3500 50  0001 C CNN
 F 3 "~" H 4000 3500 50  0001 C CNN
 	1    4000 3500
@@ -179,8 +179,6 @@ Wire Wire Line
 	6450 5700 6450 5400
 Wire Wire Line
 	6450 5400 6300 5400
-Wire Wire Line
-	6450 5400 6600 5400
 Connection ~ 6450 5400
 $Comp
 L 74xx:74HC14 U?
@@ -308,4 +306,170 @@ F 3 "" H 5150 5950 50  0001 C CNN
 	1    5150 5950
 	1    0    0    -1  
 $EndComp
+$Comp
+L Noggin:PS1240P02BT LS?
+U 1 1 6215B3F6
+P 6950 3100
+F 0 "LS?" H 7578 3096 50  0000 L CNN
+F 1 "PS1240P02BT" H 7578 3005 50  0000 L CNN
+F 2 "PS1240P02BT" H 7600 3200 50  0001 L CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 7600 3100 50  0001 L CNN
+F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 7600 3000 50  0001 L CNN "Description"
+F 5 "TDK" H 7600 2800 50  0001 L CNN "Manufacturer_Name"
+F 6 "PS1240P02BT" H 7600 2700 50  0001 L CNN "Manufacturer_Part_Number"
+F 7 "810-PS1240P02BT" H 7600 2600 50  0001 L CNN "Mouser Part Number"
+F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 7600 2500 50  0001 L CNN "Mouser Price/Stock"
+F 9 "PS1240P02BT" H 7600 2400 50  0001 L CNN "Arrow Part Number"
+F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 7600 2300 50  0001 L CNN "Arrow Price/Stock"
+	1    6950 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 6215ED9A
+P 6500 3100
+F 0 "R5" V 6293 3100 50  0000 C CNN
+F 1 "1K" V 6384 3100 50  0000 C CNN
+F 2 "" V 6430 3100 50  0001 C CNN
+F 3 "~" H 6500 3100 50  0001 C CNN
+	1    6500 3100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6100 3100 6350 3100
+Wire Wire Line
+	6650 3100 6950 3100
+Wire Wire Line
+	6450 5400 6600 5400
+Wire Wire Line
+	6950 3200 6950 5700
+Wire Wire Line
+	6950 6250 6600 6250
+$Comp
+L Noggin:OLED-1602A U?
+U 1 1 6216BA63
+P 9300 4000
+F 0 "U?" V 9124 4328 50  0000 L CNN
+F 1 "OLED-1602A" V 9215 4328 50  0000 L CNN
+F 2 "" H 9250 4100 50  0001 C CNN
+F 3 "" H 9250 4100 50  0001 C CNN
+	1    9300 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6217008E
+P 8950 2950
+F 0 "#PWR?" H 8950 2800 50  0001 C CNN
+F 1 "+3.3V" V 8965 3078 50  0000 L CNN
+F 2 "" H 8950 2950 50  0001 C CNN
+F 3 "" H 8950 2950 50  0001 C CNN
+	1    8950 2950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8200 5700 6950 5700
+Connection ~ 6950 5700
+Wire Wire Line
+	6950 5700 6950 6250
+Wire Wire Line
+	8200 3000 8200 5700
+Wire Wire Line
+	8200 3000 8950 3000
+Text GLabel 4700 4800 0    50   Input ~ 0
+CLK
+Text GLabel 8950 3650 0    50   Input ~ 0
+CLK
+Text GLabel 8650 3700 0    50   Input ~ 0
+SD1
+Text GLabel 8950 3750 0    50   Input ~ 0
+SD0
+Wire Wire Line
+	8950 3700 8650 3700
+Text GLabel 6100 3000 2    50   Input ~ 0
+SD1
+Text GLabel 6100 2900 2    50   Input ~ 0
+SD0
+Text GLabel 4700 4700 0    50   Input ~ 0
+CS
+Text GLabel 8950 3850 0    50   Input ~ 0
+CS
+$Comp
+L Device:R 10K
+U 1 1 6217785D
+P 2400 3000
+F 0 "10K" H 2470 3046 50  0000 L CNN
+F 1 "R6" H 2470 2955 50  0000 L CNN
+F 2 "" V 2330 3000 50  0001 C CNN
+F 3 "~" H 2400 3000 50  0001 C CNN
+	1    2400 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW?
+U 1 1 62178830
+P 2750 3500
+F 0 "SW?" V 2704 3648 50  0000 L CNN
+F 1 "SW_Push" V 2795 3648 50  0000 L CNN
+F 2 "" H 2750 3700 50  0001 C CNN
+F 3 "~" H 2750 3700 50  0001 C CNN
+	1    2750 3500
+	0    1    1    0   
+$EndComp
+$Comp
+L pspice:C C?
+U 1 1 6217C01A
+P 2050 3550
+F 0 "C?" H 2228 3596 50  0000 L CNN
+F 1 "C1" H 2228 3505 50  0000 L CNN
+F 2 "" H 2050 3550 50  0001 C CNN
+F 3 "~" H 2050 3550 50  0001 C CNN
+	1    2050 3550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6217CF2E
+P 2450 3900
+F 0 "#PWR?" H 2450 3650 50  0001 C CNN
+F 1 "GND" H 2455 3727 50  0000 C CNN
+F 2 "" H 2450 3900 50  0001 C CNN
+F 3 "" H 2450 3900 50  0001 C CNN
+	1    2450 3900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6217D564
+P 2400 2850
+F 0 "#PWR?" H 2400 2700 50  0001 C CNN
+F 1 "+3.3V" H 2415 3023 50  0000 C CNN
+F 2 "" H 2400 2850 50  0001 C CNN
+F 3 "" H 2400 2850 50  0001 C CNN
+	1    2400 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2750 3750 2750 3900
+Wire Wire Line
+	2750 3900 2450 3900
+Wire Wire Line
+	2750 3300 2750 3150
+Wire Wire Line
+	2750 3150 2400 3150
+Wire Wire Line
+	2050 3300 2050 3150
+Wire Wire Line
+	2050 3150 2400 3150
+Connection ~ 2400 3150
+Wire Wire Line
+	2050 3800 2050 3900
+Wire Wire Line
+	2050 3900 2450 3900
+Connection ~ 2450 3900
+Wire Wire Line
+	2750 3150 2750 3100
+Wire Wire Line
+	2750 3100 4700 3100
+Connection ~ 2750 3150
 $EndSCHEMATC

@@ -166,6 +166,58 @@ X IO33 9 0 -800 200 R 50 50 0 0 P
 ENDDRAW
 ENDDEF
 #
+# Noggin_OLED-1602A
+#
+DEF Noggin_OLED-1602A U 0 40 Y Y 1 F N
+F0 "U" -50 100 50 H V C CNN
+F1 "Noggin_OLED-1602A" -50 200 50 H V C CNN
+F2 "" -50 100 50 H I C CNN
+F3 "" -50 100 50 H I C CNN
+DRAW
+S -1100 300 850 -250 0 1 0 N
+X /CS ~ -150 -350 100 U 50 50 1 1 I
+X DB0 ~ -750 -350 100 U 50 50 1 1 I
+X DB1 ~ -700 -350 100 U 50 50 1 1 I
+X DB2 ~ -650 -350 100 U 50 50 1 1 I
+X DB3 ~ -600 -350 100 U 50 50 1 1 I
+X DB4 ~ -550 -350 100 U 50 50 1 1 I
+X DB5 ~ -500 -350 100 U 50 50 1 1 I
+X DB6 ~ -450 -350 100 U 50 50 1 1 I
+X DB7 ~ -400 -350 100 U 50 50 1 1 I
+X E ~ -800 -350 100 U 50 50 1 1 I
+X NC ~ -950 -350 100 U 50 50 1 1 N
+X NC ~ -200 -350 100 U 50 50 1 1 N
+X R/W ~ -850 -350 100 U 50 50 1 1 I
+X RS ~ -900 -350 100 U 50 50 1 1 I
+X SCL ~ -350 -350 100 U 50 50 1 1 I
+X SDI ~ -250 -350 100 U 50 50 1 1 I
+X SDO ~ -300 -350 100 U 50 50 1 1 O
+X VDD ~ -1000 -350 100 U 50 50 1 1 w
+X VSS ~ -1050 -350 100 U 50 50 1 1 W
+ENDDRAW
+ENDDEF
+#
+# Noggin_PS1240P02BT
+#
+DEF Noggin_PS1240P02BT LS 0 30 Y Y 1 F N
+F0 "LS" 650 300 50 H V L CNN
+F1 "Noggin_PS1240P02BT" 650 200 50 H V L CNN
+F2 "PS1240P02BT" 650 100 50 H I L CNN
+F3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" 650 0 50 H I L CNN
+F4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" 650 -100 50 H I L CNN "Description"
+F5 "TDK" 650 -300 50 H I L CNN "Manufacturer_Name"
+F6 "PS1240P02BT" 650 -400 50 H I L CNN "Manufacturer_Part_Number"
+F7 "810-PS1240P02BT" 650 -500 50 H I L CNN "Mouser Part Number"
+F8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" 650 -600 50 H I L CNN "Mouser Price/Stock"
+F9 "PS1240P02BT" 650 -700 50 H I L CNN "Arrow Part Number"
+F10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" 650 -800 50 H I L CNN "Arrow Price/Stock"
+DRAW
+P 5 0 1 6 200 100 600 100 600 -200 200 -200 200 100 N
+X 1 1 0 0 200 R 50 50 0 0 P
+X 2 2 0 -100 200 R 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
 # Switch_SW_Push
 #
 DEF Switch_SW_Push SW 0 40 N N 1 F N
@@ -209,6 +261,22 @@ F3 "" 0 0 50 H I C CNN
 DRAW
 P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
 X GND 1 0 0 0 D 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# pspice_C
+#
+DEF pspice_C C 0 10 Y Y 1 F N
+F0 "C" 100 150 50 V V C CNN
+F1 "pspice_C" 100 -150 50 V V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+ALIAS C
+DRAW
+P 2 0 1 0 -150 -50 150 -50 N
+P 2 0 1 0 -150 50 150 50 N
+X ~ 1 0 250 200 D 40 40 1 1 P
+X ~ 2 0 -250 200 U 40 40 1 1 P
 ENDDRAW
 ENDDEF
 #
