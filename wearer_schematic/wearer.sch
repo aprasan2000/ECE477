@@ -92,78 +92,36 @@ $EndComp
 $Comp
 L Device:LED D?
 U 1 1 620D5497
-P 5450 3450
-F 0 "D?" H 5443 3666 50  0000 C CNN
-F 1 "LED" H 5443 3575 50  0000 C CNN
-F 2 "" H 5450 3450 50  0001 C CNN
-F 3 "~" H 5450 3450 50  0001 C CNN
-	1    5450 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 620D6E37
-P 7950 1900
-F 0 "#PWR?" H 7950 1650 50  0001 C CNN
-F 1 "GND" H 7955 1727 50  0000 C CNN
-F 2 "" H 7950 1900 50  0001 C CNN
-F 3 "" H 7950 1900 50  0001 C CNN
-	1    7950 1900
-	-1   0    0    1   
+P 5150 3600
+F 0 "D?" H 5143 3816 50  0000 C CNN
+F 1 "LED" H 5143 3725 50  0000 C CNN
+F 2 "" H 5150 3600 50  0001 C CNN
+F 3 "~" H 5150 3600 50  0001 C CNN
+	1    5150 3600
+	0    -1   -1   0   
 $EndComp
 $Comp
 L power:+3.3V #PWR?
 U 1 1 620D7784
-P 5150 2150
-F 0 "#PWR?" H 5150 2000 50  0001 C CNN
-F 1 "+3.3V" H 5165 2323 50  0000 C CNN
-F 2 "" H 5150 2150 50  0001 C CNN
-F 3 "" H 5150 2150 50  0001 C CNN
-	1    5150 2150
-	1    0    0    -1  
+P 6050 2550
+F 0 "#PWR?" H 6050 2400 50  0001 C CNN
+F 1 "+3.3V" H 6065 2723 50  0000 C CNN
+F 2 "" H 6050 2550 50  0001 C CNN
+F 3 "" H 6050 2550 50  0001 C CNN
+	1    6050 2550
+	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	6150 2550 5150 2550
-Wire Wire Line
-	5150 2550 5150 2250
-Wire Wire Line
-	6150 3450 5600 3450
 $Comp
 L Device:LED D?
 U 1 1 620D647E
-P 5450 3100
-F 0 "D?" H 5443 3316 50  0000 C CNN
-F 1 "LED" H 5443 3225 50  0000 C CNN
-F 2 "" H 5450 3100 50  0001 C CNN
-F 3 "~" H 5450 3100 50  0001 C CNN
-	1    5450 3100
-	1    0    0    -1  
+P 4750 3500
+F 0 "D?" H 4743 3716 50  0000 C CNN
+F 1 "LED" H 4743 3625 50  0000 C CNN
+F 2 "" H 4750 3500 50  0001 C CNN
+F 3 "~" H 4750 3500 50  0001 C CNN
+	1    4750 3500
+	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	6150 3350 5600 3350
-Wire Wire Line
-	5600 3350 5600 3100
-Wire Wire Line
-	5300 3100 4850 3100
-Connection ~ 4850 3100
-Wire Wire Line
-	4850 3100 4850 3450
-Wire Wire Line
-	5300 3450 4850 3450
-Wire Wire Line
-	7750 2800 7750 2250
-Wire Wire Line
-	7750 2250 5150 2250
-Connection ~ 5150 2250
-Wire Wire Line
-	5150 2250 5150 2150
-Wire Wire Line
-	8050 1900 7950 1900
-Wire Wire Line
-	4850 1900 7950 1900
-Wire Wire Line
-	4850 1900 4850 3100
-Connection ~ 7950 1900
 $Comp
 L 74xx:74HC14 U?
 U 1 1 6210488A
@@ -244,40 +202,34 @@ Wire Wire Line
 $Comp
 L Noggin:PS1240P02BT LS?
 U 1 1 621084ED
-P 8500 3100
-F 0 "LS?" H 9128 3096 50  0000 L CNN
-F 1 "PS1240P02BT" H 9128 3005 50  0000 L CNN
-F 2 "PS1240P02BT" H 9150 3200 50  0001 L CNN
-F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 9150 3100 50  0001 L CNN
-F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 9150 3000 50  0001 L CNN "Description"
-F 5 "TDK" H 9150 2800 50  0001 L CNN "Manufacturer_Name"
-F 6 "PS1240P02BT" H 9150 2700 50  0001 L CNN "Manufacturer_Part_Number"
-F 7 "810-PS1240P02BT" H 9150 2600 50  0001 L CNN "Mouser Part Number"
-F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 9150 2500 50  0001 L CNN "Mouser Price/Stock"
-F 9 "PS1240P02BT" H 9150 2400 50  0001 L CNN "Arrow Part Number"
-F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 9150 2300 50  0001 L CNN "Arrow Price/Stock"
-	1    8500 3100
-	1    0    0    -1  
+P 9450 2950
+F 0 "LS?" H 10078 2946 50  0000 L CNN
+F 1 "PS1240P02BT" H 10078 2855 50  0000 L CNN
+F 2 "PS1240P02BT" H 10100 3050 50  0001 L CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 10100 2950 50  0001 L CNN
+F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 10100 2850 50  0001 L CNN "Description"
+F 5 "TDK" H 10100 2650 50  0001 L CNN "Manufacturer_Name"
+F 6 "PS1240P02BT" H 10100 2550 50  0001 L CNN "Manufacturer_Part_Number"
+F 7 "810-PS1240P02BT" H 10100 2450 50  0001 L CNN "Mouser Part Number"
+F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 10100 2350 50  0001 L CNN "Mouser Price/Stock"
+F 9 "PS1240P02BT" H 10100 2250 50  0001 L CNN "Arrow Part Number"
+F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 10100 2150 50  0001 L CNN "Arrow Price/Stock"
+	1    9450 2950
+	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	8500 3200 8050 3200
 $Comp
 L Device:R R?
 U 1 1 6210A8A7
-P 7850 3050
-F 0 "R?" V 7643 3050 50  0000 C CNN
-F 1 "1K" V 7734 3050 50  0000 C CNN
-F 2 "" V 7780 3050 50  0001 C CNN
-F 3 "~" H 7850 3050 50  0001 C CNN
-	1    7850 3050
+P 9200 3050
+F 0 "R?" V 8993 3050 50  0000 C CNN
+F 1 "1K" V 9084 3050 50  0000 C CNN
+F 2 "" V 9130 3050 50  0001 C CNN
+F 3 "~" H 9200 3050 50  0001 C CNN
+	1    9200 3050
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	7550 3050 7700 3050
-Wire Wire Line
-	8000 3050 8500 3050
-Wire Wire Line
-	8500 3050 8500 3100
+	9350 3050 9450 3050
 Text Notes 6700 1700 0    50   ~ 0
 Wearer\n
 $Comp
@@ -423,6 +375,298 @@ Wire Wire Line
 	5500 6100 5600 6100
 Wire Wire Line
 	5500 3550 6150 3550
+$Comp
+L Noggin:S9V11F3S5C3 VR1
+U 1 1 621966CE
+P 2150 1300
+F 0 "VR1" V 1700 1200 50  0000 L CNN
+F 1 "S9V11F3S5C3" V 1800 1200 50  0000 L CNN
+F 2 "" H 2050 750 50  0001 C CNN
+F 3 "" H 2050 750 50  0001 C CNN
+	1    2150 1300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Battery_Cell BT?
+U 1 1 62197E53
+P 1000 1700
+F 0 "BT?" H 1118 1796 50  0000 L CNN
+F 1 "Battery_Cell" H 1118 1705 50  0000 L CNN
+F 2 "" V 1000 1760 50  0001 C CNN
+F 3 "~" V 1000 1760 50  0001 C CNN
+	1    1000 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6219FA43
+P 1850 950
+F 0 "#PWR?" H 1850 800 50  0001 C CNN
+F 1 "+3.3V" H 1865 1123 50  0000 C CNN
+F 2 "" H 1850 950 50  0001 C CNN
+F 3 "" H 1850 950 50  0001 C CNN
+	1    1850 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6219E17C
+P 1950 1150
+F 0 "#PWR?" H 1950 900 50  0001 C CNN
+F 1 "GND" H 1955 977 50  0000 C CNN
+F 2 "" H 1950 1150 50  0001 C CNN
+F 3 "" H 1950 1150 50  0001 C CNN
+	1    1950 1150
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 621B8E68
+P 1000 1800
+F 0 "#PWR?" H 1000 1550 50  0001 C CNN
+F 1 "GND" H 1005 1627 50  0000 C CNN
+F 2 "" H 1000 1800 50  0001 C CNN
+F 3 "" H 1000 1800 50  0001 C CNN
+	1    1000 1800
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	8050 1900 8050 3200
+	1950 1050 1850 1050
+Wire Wire Line
+	1850 1050 1850 950 
+$Comp
+L Switch:SW_SPST SW?
+U 1 1 621C2767
+P 1300 1250
+F 0 "SW?" H 1300 1485 50  0000 C CNN
+F 1 "SW_SPST" H 1300 1394 50  0000 C CNN
+F 2 "" H 1300 1250 50  0001 C CNN
+F 3 "~" H 1300 1250 50  0001 C CNN
+	1    1300 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 1250 1000 1250
+Wire Wire Line
+	1500 1250 1950 1250
+Wire Wire Line
+	1000 1250 1000 1500
+Wire Wire Line
+	2000 2550 2000 2650
+Wire Wire Line
+	1900 2550 2000 2550
+$Comp
+L power:+5V #PWR?
+U 1 1 621BF0C8
+P 2000 2650
+F 0 "#PWR?" H 2000 2500 50  0001 C CNN
+F 1 "+5V" H 2015 2823 50  0000 C CNN
+F 2 "" H 2000 2650 50  0001 C CNN
+F 3 "" H 2000 2650 50  0001 C CNN
+	1    2000 2650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2000 2350 2000 2250
+Wire Wire Line
+	1900 2350 2000 2350
+$Comp
+L power:+3.3V #PWR?
+U 1 1 621B9FBC
+P 2000 2250
+F 0 "#PWR?" H 2000 2100 50  0001 C CNN
+F 1 "+3.3V" H 2015 2423 50  0000 C CNN
+F 2 "" H 2000 2250 50  0001 C CNN
+F 3 "" H 2000 2250 50  0001 C CNN
+	1    2000 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 621B9659
+P 1900 2450
+F 0 "#PWR?" H 1900 2200 50  0001 C CNN
+F 1 "GND" H 1905 2277 50  0000 C CNN
+F 2 "" H 1900 2450 50  0001 C CNN
+F 3 "" H 1900 2450 50  0001 C CNN
+	1    1900 2450
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Noggin:U1V10F5 VR2
+U 1 1 621A437E
+P 1700 2450
+F 0 "VR2" V 2000 2550 50  0000 C CNN
+F 1 "U1V10F5" V 1900 2450 50  0000 C CNN
+F 2 "" H 1700 2200 50  0001 C CNN
+F 3 "" H 1700 2200 50  0001 C CNN
+	1    1700 2450
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	6150 2550 6050 2550
+Wire Wire Line
+	9450 3050 9450 2950
+$Comp
+L power:GND #PWR?
+U 1 1 621E2094
+P 9550 3050
+F 0 "#PWR?" H 9550 2800 50  0001 C CNN
+F 1 "GND" H 9555 2877 50  0000 C CNN
+F 2 "" H 9550 3050 50  0001 C CNN
+F 3 "" H 9550 3050 50  0001 C CNN
+	1    9550 3050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9550 2950 9550 3050
+Wire Wire Line
+	7550 3050 9050 3050
+$Comp
+L power:GND #PWR?
+U 1 1 621E738B
+P 6050 2350
+F 0 "#PWR?" H 6050 2100 50  0001 C CNN
+F 1 "GND" H 6055 2177 50  0000 C CNN
+F 2 "" H 6050 2350 50  0001 C CNN
+F 3 "" H 6050 2350 50  0001 C CNN
+	1    6050 2350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	6150 2450 6050 2450
+Wire Wire Line
+	6050 2450 6050 2350
+Wire Wire Line
+	4750 3350 6150 3350
+Wire Wire Line
+	5150 3450 6150 3450
+$Comp
+L power:GND #PWR?
+U 1 1 621EF66F
+P 4750 3650
+F 0 "#PWR?" H 4750 3400 50  0001 C CNN
+F 1 "GND" H 4755 3477 50  0000 C CNN
+F 2 "" H 4750 3650 50  0001 C CNN
+F 3 "" H 4750 3650 50  0001 C CNN
+	1    4750 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 621F0037
+P 5150 3750
+F 0 "#PWR?" H 5150 3500 50  0001 C CNN
+F 1 "GND" H 5155 3577 50  0000 C CNN
+F 2 "" H 5150 3750 50  0001 C CNN
+F 3 "" H 5150 3750 50  0001 C CNN
+	1    5150 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Noggin:MQ-9B U?
+U 1 1 621F40D6
+P 2550 5150
+F 0 "U?" H 2550 5831 50  0000 C CNN
+F 1 "MQ-9B" H 2550 5740 50  0000 C CNN
+F 2 "" H 2550 5050 50  0001 C CNN
+F 3 "" H 2550 5050 50  0001 C CNN
+	1    2550 5150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 621F7E8D
+P 2350 4600
+F 0 "#PWR?" H 2350 4450 50  0001 C CNN
+F 1 "+5V" V 2365 4728 50  0000 L CNN
+F 2 "" H 2350 4600 50  0001 C CNN
+F 3 "" H 2350 4600 50  0001 C CNN
+	1    2350 4600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2550 4600 2550 4650
+Text Notes 2650 5600 1    50   ~ 0
+29Ω±3Ω
+Wire Wire Line
+	2350 4600 2550 4600
+$Comp
+L Noggin:AO3400A Q?
+U 1 1 6220A7E3
+P 2250 6300
+F 0 "Q?" H 2680 6446 50  0000 L CNN
+F 1 "AO3400A" H 2680 6355 50  0000 L CNN
+F 2 "SOT95P280X125-3N" H 2700 6250 50  0001 L CNN
+F 3 "http://aosmd.com/res/data_sheets/AO3400A.pdf" H 2700 6150 50  0001 L CNN
+F 4 "30V N-Channel MOSFET" H 2700 6050 50  0001 L CNN "Description"
+F 5 "1.25" H 2700 5950 50  0001 L CNN "Height"
+F 6 "Alpha & Omega Semiconductors" H 2700 5850 50  0001 L CNN "Manufacturer_Name"
+F 7 "AO3400A" H 2700 5750 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "" H 2700 5650 50  0001 L CNN "Mouser Part Number"
+F 9 "" H 2700 5550 50  0001 L CNN "Mouser Price/Stock"
+F 10 "AO3400A" H 2700 5450 50  0001 L CNN "Arrow Part Number"
+F 11 "https://www.arrow.com/en/products/ao3400a/alpha-and-omega-semiconductor?region=nac" H 2700 5350 50  0001 L CNN "Arrow Price/Stock"
+	1    2250 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6220BBEA
+P 2550 6500
+F 0 "#PWR?" H 2550 6250 50  0001 C CNN
+F 1 "GND" H 2555 6327 50  0000 C CNN
+F 2 "" H 2550 6500 50  0001 C CNN
+F 3 "" H 2550 6500 50  0001 C CNN
+	1    2550 6500
+	1    0    0    -1  
+$EndComp
+Text GLabel 1750 6300 0    50   Input ~ 0
+GPIO
+$Comp
+L Device:R R?
+U 1 1 6220E3FD
+P 2000 6300
+F 0 "R?" V 1793 6300 50  0000 C CNN
+F 1 "100" V 1884 6300 50  0000 C CNN
+F 2 "" V 1930 6300 50  0001 C CNN
+F 3 "~" H 2000 6300 50  0001 C CNN
+	1    2000 6300
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 622115D7
+P 3150 6050
+F 0 "R?" H 3220 6096 50  0000 L CNN
+F 1 "71.167" H 3220 6005 50  0000 L CNN
+F 2 "" V 3080 6050 50  0001 C CNN
+F 3 "~" H 3150 6050 50  0001 C CNN
+	1    3150 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2550 5700 2550 5800
+Wire Wire Line
+	2550 5800 3150 5800
+Wire Wire Line
+	3150 5800 3150 5900
+Wire Wire Line
+	2550 5800 2550 5900
+Connection ~ 2550 5800
+$Comp
+L power:GND #PWR?
+U 1 1 62218983
+P 3150 6200
+F 0 "#PWR?" H 3150 5950 50  0001 C CNN
+F 1 "GND" H 3155 6027 50  0000 C CNN
+F 2 "" H 3150 6200 50  0001 C CNN
+F 3 "" H 3150 6200 50  0001 C CNN
+	1    3150 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 6300 2150 6300
+Wire Wire Line
+	1850 6300 1750 6300
 $EndSCHEMATC
