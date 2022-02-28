@@ -42,17 +42,6 @@ F 3 "~" H 4750 3950 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:+3.3V #PWR?
-U 1 1 620D7784
-P 5900 2550
-F 0 "#PWR?" H 5900 2400 50  0001 C CNN
-F 1 "+3.3V" H 5915 2723 50  0000 C CNN
-F 2 "" H 5900 2550 50  0001 C CNN
-F 3 "" H 5900 2550 50  0001 C CNN
-	1    5900 2550
-	0    -1   -1   0   
-$EndComp
-$Comp
 L Device:LED D?
 U 1 1 620D647E
 P 4350 3950
@@ -94,80 +83,6 @@ F 3 "~" H 2900 4800 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3050 4800 3150 4800
-$Comp
-L Noggin:S9V11F3S5C3 VR1
-U 1 1 621966CE
-P 2300 1650
-F 0 "VR1" V 1850 1550 50  0000 L CNN
-F 1 "S9V11F3S5C3" V 1950 1550 50  0000 L CNN
-F 2 "" H 2200 1100 50  0001 C CNN
-F 3 "" H 2200 1100 50  0001 C CNN
-	1    2300 1650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:Battery_Cell BT?
-U 1 1 62197E53
-P 1150 2050
-F 0 "BT?" H 850 2200 50  0000 L CNN
-F 1 "Battery_Cell" H 550 2100 50  0000 L CNN
-F 2 "" V 1150 2110 50  0001 C CNN
-F 3 "~" V 1150 2110 50  0001 C CNN
-	1    1150 2050
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR?
-U 1 1 6219FA43
-P 2000 900
-F 0 "#PWR?" H 2000 750 50  0001 C CNN
-F 1 "+3.3V" H 2015 1073 50  0000 C CNN
-F 2 "" H 2000 900 50  0001 C CNN
-F 3 "" H 2000 900 50  0001 C CNN
-	1    2000 900 
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 6219E17C
-P 2100 1500
-F 0 "#PWR?" H 2100 1250 50  0001 C CNN
-F 1 "GND" H 2105 1327 50  0000 C CNN
-F 2 "" H 2100 1500 50  0001 C CNN
-F 3 "" H 2100 1500 50  0001 C CNN
-	1    2100 1500
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 621B8E68
-P 1150 2150
-F 0 "#PWR?" H 1150 1900 50  0001 C CNN
-F 1 "GND" H 1155 1977 50  0000 C CNN
-F 2 "" H 1150 2150 50  0001 C CNN
-F 3 "" H 1150 2150 50  0001 C CNN
-	1    1150 2150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2100 1400 2000 1400
-$Comp
-L Switch:SW_SPST SW?
-U 1 1 621C2767
-P 1450 1600
-F 0 "SW?" H 1450 1835 50  0000 C CNN
-F 1 "SW_SPST" H 1450 1744 50  0000 C CNN
-F 2 "" H 1450 1600 50  0001 C CNN
-F 3 "~" H 1450 1600 50  0001 C CNN
-	1    1450 1600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1250 1600 1150 1600
-Wire Wire Line
-	1150 1600 1150 1850
-Wire Wire Line
-	6000 2550 5900 2550
 Wire Wire Line
 	3150 4800 3150 4700
 $Comp
@@ -186,12 +101,12 @@ Wire Wire Line
 $Comp
 L power:GND #PWR?
 U 1 1 621E738B
-P 6000 2450
-F 0 "#PWR?" H 6000 2200 50  0001 C CNN
-F 1 "GND" H 6005 2277 50  0000 C CNN
-F 2 "" H 6000 2450 50  0001 C CNN
-F 3 "" H 6000 2450 50  0001 C CNN
-	1    6000 2450
+P 5150 2350
+F 0 "#PWR?" H 5150 2100 50  0001 C CNN
+F 1 "GND" H 5155 2177 50  0000 C CNN
+F 2 "" H 5150 2350 50  0001 C CNN
+F 3 "" H 5150 2350 50  0001 C CNN
+	1    5150 2350
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -431,28 +346,8 @@ Wire Wire Line
 	2300 5500 2500 5500
 Wire Wire Line
 	2300 5500 2300 6050
-$Comp
-L Device:CP1 C?
-U 1 1 62221CB4
-P 2250 1000
-F 0 "C?" V 2502 1000 50  0000 C CNN
-F 1 "10uF" V 2411 1000 50  0000 C CNN
-F 2 "" H 2250 1000 50  0001 C CNN
-F 3 "~" H 2250 1000 50  0001 C CNN
-	1    2250 1000
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	2000 900  2000 1000
-Wire Wire Line
-	2100 1000 2000 1000
-Connection ~ 2000 1000
-Wire Wire Line
-	2000 1000 2000 1400
 Text Notes 1550 5300 0    50   ~ 0
 Gas Sensor
-Text Notes 1300 1200 0    50   ~ 0
-Power
 $Comp
 L 74xx:74HC14 U?
 U 1 1 62236DAF
@@ -784,8 +679,6 @@ Text GLabel 7400 2450 2    50   Input ~ 0
 SPI_MISO
 Text GLabel 7400 2550 2    50   Input ~ 0
 SPI_MOSI
-Text Notes 2100 2150 0    50   ~ 0
-3.3V Step-Up Step-Down\nVoltage Regulator Module
 Text GLabel 9900 5500 0    50   Input ~ 0
 GPIO4
 Text GLabel 9900 6250 0    50   Input ~ 0
@@ -1044,55 +937,6 @@ Text Notes 4450 3100 0    50   ~ 0
 LEDs
 Text GLabel 6000 3250 0    50   Input ~ 0
 ADC1_CH5
-$Comp
-L Device:R R?
-U 1 1 6223F31D
-P 1750 2200
-F 0 "R?" H 1820 2246 50  0000 L CNN
-F 1 "22k" H 1820 2155 50  0000 L CNN
-F 2 "" V 1680 2200 50  0001 C CNN
-F 3 "~" H 1750 2200 50  0001 C CNN
-	1    1750 2200
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R R?
-U 1 1 62242505
-P 1750 2700
-F 0 "R?" H 1820 2746 50  0000 L CNN
-F 1 "68k" H 1820 2655 50  0000 L CNN
-F 2 "" V 1680 2700 50  0001 C CNN
-F 3 "~" H 1750 2700 50  0001 C CNN
-	1    1750 2700
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 62242CEE
-P 1750 2850
-F 0 "#PWR?" H 1750 2600 50  0001 C CNN
-F 1 "GND" H 1755 2677 50  0000 C CNN
-F 2 "" H 1750 2850 50  0001 C CNN
-F 3 "" H 1750 2850 50  0001 C CNN
-	1    1750 2850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1750 2350 1750 2450
-Wire Wire Line
-	1750 2450 1800 2450
-Connection ~ 1750 2450
-Wire Wire Line
-	1750 2450 1750 2550
-Text GLabel 1800 2450 2    50   Input ~ 0
-ADC1_CH6
-Wire Wire Line
-	1650 1600 1750 1600
-Wire Wire Line
-	1750 1600 1750 2050
-Connection ~ 1750 1600
-Wire Wire Line
-	1750 1600 2100 1600
 Text Notes 950  3350 0    50   ~ 0
 5V Power
 Text Notes 700  4500 0    50   ~ 0
@@ -1173,8 +1017,6 @@ F 3 "" H 6000 3850 50  0001 C CNN
 	1    6000 3850
 	0    1    1    0   
 $EndComp
-Text Notes 1900 2700 0    50   ~ 0
-Battery\nMonitoring
 Text GLabel 6000 3450 0    50   Input ~ 0
 GPIO26
 Text GLabel 4750 3350 2    50   Input ~ 0
@@ -1199,17 +1041,6 @@ Text GLabel 7400 3250 2    50   Input ~ 0
 GPIO5
 Text GLabel 7400 3150 2    50   Input ~ 0
 GPIO17
-$Comp
-L power:GND #PWR?
-U 1 1 622272CD
-P 2400 1000
-F 0 "#PWR?" H 2400 750 50  0001 C CNN
-F 1 "GND" H 2405 827 50  0000 C CNN
-F 2 "" H 2400 1000 50  0001 C CNN
-F 3 "" H 2400 1000 50  0001 C CNN
-	1    2400 1000
-	0    -1   -1   0   
-$EndComp
 Text GLabel 8500 1100 0    50   Input ~ 0
 SDO
 Text GLabel 7400 4050 2    50   Input ~ 0
@@ -1488,4 +1319,184 @@ Wire Notes Line
 	5300 1850 5300 950 
 Text Notes 7850 2500 0    50   ~ 0
 (unsure)
+$Comp
+L Noggin:S9V11F3S5C3 VR1
+U 1 1 621966CE
+P 2300 1500
+F 0 "VR1" V 1850 1400 50  0000 L CNN
+F 1 "S9V11F3S5C3" V 1950 1400 50  0000 L CNN
+F 2 "" H 2200 950 50  0001 C CNN
+F 3 "" H 2200 950 50  0001 C CNN
+	1    2300 1500
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Battery_Cell BT?
+U 1 1 62197E53
+P 1150 1900
+F 0 "BT?" H 850 2050 50  0000 L CNN
+F 1 "Battery_Cell" H 550 1950 50  0000 L CNN
+F 2 "" V 1150 1960 50  0001 C CNN
+F 3 "~" V 1150 1960 50  0001 C CNN
+	1    1150 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6219FA43
+P 2000 1150
+F 0 "#PWR?" H 2000 1000 50  0001 C CNN
+F 1 "+3.3V" H 2015 1323 50  0000 C CNN
+F 2 "" H 2000 1150 50  0001 C CNN
+F 3 "" H 2000 1150 50  0001 C CNN
+	1    2000 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6219E17C
+P 2100 1350
+F 0 "#PWR?" H 2100 1100 50  0001 C CNN
+F 1 "GND" H 2105 1177 50  0000 C CNN
+F 2 "" H 2100 1350 50  0001 C CNN
+F 3 "" H 2100 1350 50  0001 C CNN
+	1    2100 1350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 621B8E68
+P 1150 2000
+F 0 "#PWR?" H 1150 1750 50  0001 C CNN
+F 1 "GND" H 1155 1827 50  0000 C CNN
+F 2 "" H 1150 2000 50  0001 C CNN
+F 3 "" H 1150 2000 50  0001 C CNN
+	1    1150 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 1250 2000 1250
+$Comp
+L Switch:SW_SPST SW?
+U 1 1 621C2767
+P 1450 1450
+F 0 "SW?" H 1450 1685 50  0000 C CNN
+F 1 "SW_SPST" H 1450 1594 50  0000 C CNN
+F 2 "" H 1450 1450 50  0001 C CNN
+F 3 "~" H 1450 1450 50  0001 C CNN
+	1    1450 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 1450 1150 1450
+Wire Wire Line
+	1150 1450 1150 1700
+Text Notes 1300 1050 0    50   ~ 0
+Power
+Text Notes 2100 2000 0    50   ~ 0
+3.3V Step-Up Step-Down\nVoltage Regulator Module
+$Comp
+L Device:R R?
+U 1 1 6223F31D
+P 1750 2050
+F 0 "R?" H 1820 2096 50  0000 L CNN
+F 1 "22k" H 1820 2005 50  0000 L CNN
+F 2 "" V 1680 2050 50  0001 C CNN
+F 3 "~" H 1750 2050 50  0001 C CNN
+	1    1750 2050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 62242505
+P 1750 2550
+F 0 "R?" H 1820 2596 50  0000 L CNN
+F 1 "68k" H 1820 2505 50  0000 L CNN
+F 2 "" V 1680 2550 50  0001 C CNN
+F 3 "~" H 1750 2550 50  0001 C CNN
+	1    1750 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 62242CEE
+P 1750 2700
+F 0 "#PWR?" H 1750 2450 50  0001 C CNN
+F 1 "GND" H 1755 2527 50  0000 C CNN
+F 2 "" H 1750 2700 50  0001 C CNN
+F 3 "" H 1750 2700 50  0001 C CNN
+	1    1750 2700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 2200 1750 2300
+Wire Wire Line
+	1750 2300 1800 2300
+Connection ~ 1750 2300
+Wire Wire Line
+	1750 2300 1750 2400
+Text GLabel 1800 2300 2    50   Input ~ 0
+ADC1_CH6
+Wire Wire Line
+	1650 1450 1750 1450
+Wire Wire Line
+	1750 1450 1750 1900
+Connection ~ 1750 1450
+Wire Wire Line
+	1750 1450 2100 1450
+Text Notes 1900 2550 0    50   ~ 0
+Battery\nMonitoring
+Wire Wire Line
+	2000 1150 2000 1250
+$Comp
+L power:+3.3V #PWR?
+U 1 1 620D7784
+P 5150 2550
+F 0 "#PWR?" H 5150 2400 50  0001 C CNN
+F 1 "+3.3V" H 5165 2723 50  0000 C CNN
+F 2 "" H 5150 2550 50  0001 C CNN
+F 3 "" H 5150 2550 50  0001 C CNN
+	1    5150 2550
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 621E55A2
+P 5650 2450
+F 0 "C?" H 5742 2496 50  0000 L CNN
+F 1 "0.1uF" H 5742 2405 50  0000 L CNN
+F 2 "" H 5650 2450 50  0001 C CNN
+F 3 "~" H 5650 2450 50  0001 C CNN
+	1    5650 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 621F0155
+P 5300 2450
+F 0 "C?" H 5392 2496 50  0000 L CNN
+F 1 "10uF" H 5392 2405 50  0000 L CNN
+F 2 "" H 5300 2450 50  0001 C CNN
+F 3 "~" H 5300 2450 50  0001 C CNN
+	1    5300 2450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 2550 6000 2550
+Wire Wire Line
+	5300 2550 5150 2550
+Wire Wire Line
+	5300 2550 5650 2550
+Connection ~ 5300 2550
+Connection ~ 5650 2550
+Wire Wire Line
+	6000 2450 6000 2350
+Wire Wire Line
+	6000 2350 5650 2350
+Wire Wire Line
+	5650 2350 5300 2350
+Connection ~ 5650 2350
+Wire Wire Line
+	5300 2350 5150 2350
+Connection ~ 5300 2350
 $EndSCHEMATC
