@@ -1216,8 +1216,6 @@ Text GLabel 7400 4050 2    50   Input ~ 0
 SDO
 Wire Wire Line
 	7400 4150 7550 4150
-Text Notes 7850 2500 0    50   ~ 0
-(unsure)
 $Comp
 L 74xx:74HC14 U?
 U 7 1 62296A70
@@ -1488,4 +1486,6 @@ Wire Notes Line
 	6600 1850 5300 1850
 Wire Notes Line
 	5300 1850 5300 950 
+Text Notes 7850 2500 0    50   ~ 0
+(unsure)
 $EndSCHEMATC
