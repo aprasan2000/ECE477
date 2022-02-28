@@ -850,9 +850,9 @@ F 3 "" H 8100 2750 50  0001 C CNN
 	1    8100 2750
 	1    0    0    -1  
 $EndComp
-Text GLabel 9200 2200 2    50   Input ~ 0
+Text GLabel 9200 2250 2    50   Input ~ 0
 SD1
-Text GLabel 9200 2100 2    50   Input ~ 0
+Text GLabel 9200 2150 2    50   Input ~ 0
 SD0
 $Comp
 L power:GND #PWR?
@@ -896,4 +896,71 @@ Wire Notes Line
 	7100 1650 8550 1650
 Wire Notes Line
 	8550 1000 8550 1650
+$Comp
+L Noggin2:RFM9-LoRa-Radio U?
+U 1 1 621CB351
+P 5700 6700
+F 0 "U?" V 4875 6650 50  0000 C CNN
+F 1 "RFM9-LoRa-Radio" V 4966 6650 50  0000 C CNN
+F 2 "" H 5700 6700 50  0001 C CNN
+F 3 "" H 5700 6700 50  0001 C CNN
+	1    5700 6700
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 621CE098
+P 5350 6100
+F 0 "#PWR?" H 5350 5950 50  0001 C CNN
+F 1 "+3.3V" H 5365 6273 50  0000 C CNN
+F 2 "" H 5350 6100 50  0001 C CNN
+F 3 "" H 5350 6100 50  0001 C CNN
+	1    5350 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 621CEF67
+P 5350 6250
+F 0 "#PWR?" H 5350 6000 50  0001 C CNN
+F 1 "GND" V 5355 6122 50  0000 R CNN
+F 2 "" H 5350 6250 50  0001 C CNN
+F 3 "" H 5350 6250 50  0001 C CNN
+	1    5350 6250
+	0    1    1    0   
+$EndComp
+Text GLabel 4250 3200 2    50   Input ~ 0
+IO16
+Text GLabel 5350 6400 0    50   Input ~ 0
+IO16
+Text GLabel 4250 3300 2    50   Input ~ 0
+IO17
+Text GLabel 5300 6550 0    50   Input ~ 0
+IO17
+Text GLabel 5350 6700 0    50   Input ~ 0
+CLK
+Text GLabel 2850 4200 0    50   Input ~ 0
+SD2
+Text GLabel 2850 4300 0    50   Input ~ 0
+SD3
+Text GLabel 5350 6850 0    50   Input ~ 0
+SD2
+Text GLabel 5350 7000 0    50   Input ~ 0
+SD3
+Text GLabel 5350 7150 0    50   Input ~ 0
+CS
+Text GLabel 5350 7300 0    50   Input ~ 0
+IO18
+Text GLabel 4250 3500 2    50   Input ~ 0
+IO18
+Wire Notes Line
+	4850 5650 6350 5650
+Wire Notes Line
+	6350 5650 6350 7600
+Wire Notes Line
+	6350 7600 4850 7600
+Wire Notes Line
+	4850 7600 4850 5650
+Text Notes 5000 5750 0    50   ~ 0
+LoRa for wireless communication
 $EndSCHEMATC
