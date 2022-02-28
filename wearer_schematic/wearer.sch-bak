@@ -4,7 +4,7 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
+Title "ECE 477 Team 19: Noggin"
 Date ""
 Rev ""
 Comp ""
@@ -1143,13 +1143,13 @@ ADC1_CH4
 $Comp
 L power:GND #PWR?
 U 1 1 6226E33E
-P 7550 4150
-F 0 "#PWR?" H 7550 3900 50  0001 C CNN
-F 1 "GND" H 7555 3977 50  0000 C CNN
-F 2 "" H 7550 4150 50  0001 C CNN
-F 3 "" H 7550 4150 50  0001 C CNN
-	1    7550 4150
-	0    -1   -1   0   
+P 7700 4150
+F 0 "#PWR?" H 7700 3900 50  0001 C CNN
+F 1 "GND" H 7705 3977 50  0000 C CNN
+F 2 "" H 7700 4150 50  0001 C CNN
+F 3 "" H 7700 4150 50  0001 C CNN
+	1    7700 4150
+	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
@@ -1210,4 +1210,12 @@ F 3 "" H 2400 1000 50  0001 C CNN
 	1    2400 1000
 	0    -1   -1   0   
 $EndComp
+Text GLabel 8500 1100 0    50   Input ~ 0
+SDO
+Text GLabel 7550 4050 2    50   Input ~ 0
+SDO
+Wire Wire Line
+	7550 4150 7700 4150
+Text Notes 8000 2500 0    50   ~ 0
+(unsure)
 $EndSCHEMATC
