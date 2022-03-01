@@ -580,17 +580,6 @@ F 3 "" H 3750 1200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:CP1 C?
-U 1 1 62270C52
-P 4150 1750
-F 0 "C?" V 4402 1750 50  0000 C CNN
-F 1 "1uF" V 4311 1750 50  0000 C CNN
-F 2 "" H 4150 1750 50  0001 C CNN
-F 3 "~" H 4150 1750 50  0001 C CNN
-	1    4150 1750
-	1    0    0    -1  
-$EndComp
-$Comp
 L Switch:SW_SPST SW?
 U 1 1 6227237A
 P 3750 1800
@@ -627,8 +616,6 @@ Wire Wire Line
 	3750 2050 3950 2050
 Wire Wire Line
 	3950 2050 3950 2100
-Wire Wire Line
-	4150 1900 4150 2050
 Wire Wire Line
 	4150 2050 3950 2050
 Connection ~ 3950 2050
@@ -1499,4 +1486,17 @@ Connection ~ 5650 2350
 Wire Wire Line
 	5300 2350 5150 2350
 Connection ~ 5300 2350
+$Comp
+L Device:C_Small C?
+U 1 1 6221322F
+P 4150 1700
+F 0 "C?" H 4242 1746 50  0000 L CNN
+F 1 "1uF" H 4242 1655 50  0000 L CNN
+F 2 "" H 4150 1700 50  0001 C CNN
+F 3 "~" H 4150 1700 50  0001 C CNN
+	1    4150 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 1800 4150 2050
 $EndSCHEMATC
