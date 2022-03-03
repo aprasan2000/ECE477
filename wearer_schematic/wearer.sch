@@ -1095,13 +1095,13 @@ Wire Notes Line
 $Comp
 L power:GND #PWR010
 U 1 1 6219E17C
-P 2100 1550
-F 0 "#PWR010" H 2100 1300 50  0001 C CNN
-F 1 "GND" H 2105 1377 50  0000 C CNN
-F 2 "" H 2100 1550 50  0001 C CNN
-F 3 "" H 2100 1550 50  0001 C CNN
-	1    2100 1550
-	0    1    1    0   
+P 2050 1750
+F 0 "#PWR010" H 2050 1500 50  0001 C CNN
+F 1 "GND" H 2055 1577 50  0000 C CNN
+F 2 "" H 2050 1750 50  0001 C CNN
+F 3 "" H 2050 1750 50  0001 C CNN
+	1    2050 1750
+	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR02
@@ -1120,8 +1120,8 @@ Wire Wire Line
 	1150 1450 1150 1700
 Text Notes 1100 850  0    50   ~ 0
 Power
-Text Notes 2200 1900 0    50   ~ 0
-3.3V Step-Up Step-Down\nVoltage Regulator
+Text Notes 2450 1950 0    50   ~ 0
+3.3V Step-Up\nStep-Down\nVoltage Regulator
 $Comp
 L Device:R R2
 U 1 1 6223F31D
@@ -1166,8 +1166,6 @@ Text GLabel 1800 2300 2    50   Input ~ 0
 ADC1_CH6_BAT
 Wire Wire Line
 	1750 1450 1750 1900
-Wire Wire Line
-	1750 1450 2100 1450
 Text Notes 1900 2550 0    50   ~ 0
 Battery\nMonitoring
 $Comp
@@ -1295,7 +1293,6 @@ F 3 "~" H 1450 1450 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1650 1450 1750 1450
-Connection ~ 1750 1450
 $Comp
 L Switch:SW_Push SW4
 U 1 1 622753D1
@@ -1473,12 +1470,12 @@ Wire Wire Line
 $Comp
 L Noggin:S9V11F3S5C3 VR2
 U 1 1 62215EA1
-P 2300 1450
-F 0 "VR2" V 1850 1500 50  0000 L CNN
-F 1 "S9V11F3S5C3" V 1950 1300 50  0000 L CNN
-F 2 "noggin:S9V11F3S5C3" H 2200 900 50  0001 C CNN
-F 3 "" H 2200 900 50  0001 C CNN
-	1    2300 1450
+P 2550 1450
+F 0 "VR2" V 2100 1500 50  0000 L CNN
+F 1 "S9V11F3S5C3" V 2200 1300 50  0000 L CNN
+F 2 "noggin:S9V11F3S5C3" H 2450 900 50  0001 C CNN
+F 3 "" H 2450 900 50  0001 C CNN
+	1    2550 1450
 	0    1    1    0   
 $EndComp
 Wire Notes Line
@@ -1492,18 +1489,18 @@ Wire Notes Line
 Text Notes 7550 2150 0    50   ~ 0
 Accelerometer
 Wire Wire Line
-	2100 1650 2050 1650
+	2350 1650 2300 1650
 Wire Wire Line
-	2050 1650 2050 1750
+	2300 1650 2300 1750
 $Comp
 L power:+3.3V #PWR09
 U 1 1 6219FA43
-P 2050 1750
-F 0 "#PWR09" H 2050 1600 50  0001 C CNN
-F 1 "+3.3V" H 2065 1923 50  0000 C CNN
-F 2 "" H 2050 1750 50  0001 C CNN
-F 3 "" H 2050 1750 50  0001 C CNN
-	1    2050 1750
+P 2300 1750
+F 0 "#PWR09" H 2300 1600 50  0001 C CNN
+F 1 "+3.3V" H 2315 1923 50  0000 C CNN
+F 2 "" H 2300 1750 50  0001 C CNN
+F 3 "" H 2300 1750 50  0001 C CNN
+	1    2300 1750
 	-1   0    0    1   
 $EndComp
 $Comp
@@ -1624,4 +1621,30 @@ Wire Wire Line
 	9950 3900 9950 4000
 Wire Wire Line
 	9950 4000 10100 4000
+Wire Wire Line
+	1750 1450 2050 1450
+Connection ~ 1750 1450
+$Comp
+L Device:C_Small C?
+U 1 1 6232C298
+P 2050 1550
+F 0 "C?" H 2142 1596 50  0000 L CNN
+F 1 "33uF" H 2142 1505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2050 1550 50  0001 C CNN
+F 3 "~" H 2050 1550 50  0001 C CNN
+	1    2050 1550
+	-1   0    0    1   
+$EndComp
+Connection ~ 2050 1450
+Wire Wire Line
+	2050 1450 2350 1450
+Wire Wire Line
+	2050 1650 2050 1750
+Wire Wire Line
+	2350 1550 2200 1550
+Wire Wire Line
+	2200 1550 2200 1750
+Wire Wire Line
+	2200 1750 2050 1750
+Connection ~ 2050 1750
 $EndSCHEMATC
