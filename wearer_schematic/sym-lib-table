@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name Noggin)(type Legacy)(uri ${KIPRJMOD}/Noggin.lib)(options "")(descr ""))
+  (lib (name wearer-rescue)(type Legacy)(uri ${KIPRJMOD}/wearer-rescue.lib)(options "")(descr ""))
 )
