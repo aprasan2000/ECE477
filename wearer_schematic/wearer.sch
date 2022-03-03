@@ -1275,7 +1275,7 @@ U 1 1 622461A7
 P 950 1700
 F 0 "J1" H 1058 1881 50  0000 C CNN
 F 1 "Conn_01x02_Male" H 1058 1790 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 950 1700 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal" H 950 1700 50  0001 C CNN
 F 3 "~" H 950 1700 50  0001 C CNN
 	1    950  1700
 	1    0    0    -1  
@@ -1624,17 +1624,6 @@ Wire Wire Line
 Wire Wire Line
 	1750 1450 2050 1450
 Connection ~ 1750 1450
-$Comp
-L Device:C_Small C?
-U 1 1 6232C298
-P 2050 1550
-F 0 "C?" H 2142 1596 50  0000 L CNN
-F 1 "33uF" H 2142 1505 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2050 1550 50  0001 C CNN
-F 3 "~" H 2050 1550 50  0001 C CNN
-	1    2050 1550
-	-1   0    0    1   
-$EndComp
 Connection ~ 2050 1450
 Wire Wire Line
 	2050 1450 2350 1450
@@ -1647,4 +1636,15 @@ Wire Wire Line
 Wire Wire Line
 	2200 1750 2050 1750
 Connection ~ 2050 1750
+$Comp
+L Device:C_Small C9
+U 1 1 6232C298
+P 2050 1550
+F 0 "C9" H 2142 1596 50  0000 L CNN
+F 1 "33uF" H 2142 1505 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2050 1550 50  0001 C CNN
+F 3 "~" H 2050 1550 50  0001 C CNN
+	1    2050 1550
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
