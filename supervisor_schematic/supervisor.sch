@@ -1128,4 +1128,19 @@ Wire Wire Line
 Connection ~ 2950 6750
 Wire Wire Line
 	2950 6750 3050 6750
+$Comp
+L Connector_Generic:Conn_01x02 J3
+U 1 1 6232DD59
+P 7000 4150
+F 0 "J3" H 7080 4142 50  0000 L CNN
+F 1 "Conn_01x02" H 7080 4051 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 7000 4150 50  0001 C CNN
+F 3 "~" H 7000 4150 50  0001 C CNN
+	1    7000 4150
+	1    0    0    -1  
+$EndComp
+Text GLabel 6800 4150 0    50   Input ~ 0
+SD0
+Text GLabel 6800 4250 0    50   Input ~ 0
+SD1
 $EndSCHEMATC
