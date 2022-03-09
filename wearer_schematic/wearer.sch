@@ -213,12 +213,10 @@ Wire Wire Line
 Connection ~ 2000 5750
 Wire Wire Line
 	2300 6000 2300 6100
-Wire Wire Line
-	2300 5600 2650 5600
 Connection ~ 2300 5600
 Wire Wire Line
 	2300 5600 2300 5700
-Text GLabel 2650 5600 2    50   Input ~ 0
+Text GLabel 3150 5600 3    50   Input ~ 0
 ADC1_CH5_GAS
 Wire Wire Line
 	2100 5200 2300 5200
@@ -1647,4 +1645,48 @@ F 3 "~" H 2050 1550 50  0001 C CNN
 	1    2050 1550
 	-1   0    0    1   
 $EndComp
+$Comp
+L power:+3.3V #PWR0101
+U 1 1 6227FF5D
+P 7600 1500
+F 0 "#PWR0101" H 7600 1350 50  0001 C CNN
+F 1 "+3.3V" H 7615 1673 50  0000 C CNN
+F 2 "" H 7600 1500 50  0001 C CNN
+F 3 "" H 7600 1500 50  0001 C CNN
+	1    7600 1500
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	7800 1500 7600 1500
+$Comp
+L Device:C_Small C10
+U 1 1 622E52B9
+P 2650 5850
+F 0 "C10" H 2742 5896 50  0000 L CNN
+F 1 "0.1uF" H 2742 5805 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2650 5850 50  0001 C CNN
+F 3 "~" H 2650 5850 50  0001 C CNN
+	1    2650 5850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2300 5600 2650 5600
+Wire Wire Line
+	2650 5750 2650 5600
+Connection ~ 2650 5600
+Wire Wire Line
+	2650 5600 3150 5600
+$Comp
+L power:GND #PWR044
+U 1 1 62355563
+P 2650 6100
+F 0 "#PWR044" H 2650 5850 50  0001 C CNN
+F 1 "GND" H 2655 5927 50  0000 C CNN
+F 2 "" H 2650 6100 50  0001 C CNN
+F 3 "" H 2650 6100 50  0001 C CNN
+	1    2650 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 5950 2650 6100
 $EndSCHEMATC
