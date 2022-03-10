@@ -1,4 +1,4 @@
-16952712806524009
+16954360360957934
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -75270,6 +75270,13 @@ LSM6DSLTR
 0
 14
 14
+noggin
+MMBT2222
+SOT-23-2
+Transistor BJT NPN
+0
+3
+3
 noggin
 MQ-9B
 
