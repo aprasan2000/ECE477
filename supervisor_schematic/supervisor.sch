@@ -60,7 +60,7 @@ U 1 1 621F9355
 P 3000 1400
 F 0 "D3" H 2993 1145 50  0000 C CNN
 F 1 "LED" H 2993 1236 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3000 1400 50  0001 C CNN
+F 2 "Noggin:0805_LED_Extended" H 3000 1400 50  0001 C CNN
 F 3 "~" H 3000 1400 50  0001 C CNN
 	1    3000 1400
 	-1   0    0    1   
@@ -290,8 +290,6 @@ Wire Notes Line
 Wire Notes Line
 	900  2000 3350 2000
 Wire Notes Line
-	3350 2000 3350 550 
-Wire Notes Line
 	3350 550  900  550 
 Wire Notes Line
 	4900 500  6350 500 
@@ -301,28 +299,15 @@ Wire Notes Line
 	900  7600 4300 7600
 Text Notes 1500 4950 0    50   ~ 0
 Button Debouncing
-Text Notes 7250 900  0    50   ~ 0
+Text Notes 7450 900  0    50   ~ 0
 Will be using a usbC to serial module that will connect via these connectors. \nhttps://www.superhouse.tv/product/espflasher-esp8266-esp32-usb-serial-flasher/
 Text Notes 8200 1100 0    50   ~ 0
 Programming Header
 Text GLabel 7650 1050 0    50   Input ~ 0
-IO0
-Text GLabel 7650 1150 0    50   Input ~ 0
-RESET
-$Comp
-L power:+3.3V #PWR0113
-U 1 1 6232B73A
-P 7650 1250
-F 0 "#PWR0113" H 7650 1100 50  0001 C CNN
-F 1 "+3.3V" V 7665 1378 50  0000 L CNN
-F 2 "" H 7650 1250 50  0001 C CNN
-F 3 "" H 7650 1250 50  0001 C CNN
-	1    7650 1250
-	0    -1   -1   0   
-$EndComp
-Text GLabel 7650 1450 0    50   Input ~ 0
+DTR
+Text GLabel 7650 1250 0    50   Input ~ 0
 RX
-Text GLabel 7650 1350 0    50   Input ~ 0
+Text GLabel 7650 1150 0    50   Input ~ 0
 TX
 $Comp
 L power:GND #PWR0114
@@ -451,12 +436,10 @@ F 3 "" H 5350 6250 50  0001 C CNN
 $EndComp
 Text GLabel 5350 6400 0    50   Input ~ 0
 IO16
-Text GLabel 5350 6700 0    50   Input ~ 0
-CLK
-Text GLabel 5350 6850 0    50   Input ~ 0
-SD0
 Text GLabel 5350 7000 0    50   Input ~ 0
-SD1
+MOSI
+Text GLabel 5350 6850 0    50   Input ~ 0
+MISO
 Text GLabel 5350 7150 0    50   Input ~ 0
 CS
 Text GLabel 5350 7300 0    50   Input ~ 0
@@ -471,52 +454,6 @@ Text Notes 5000 5750 0    50   ~ 0
 LoRa for wireless communication
 Wire Wire Line
 	2200 1400 2500 1400
-$Comp
-L Noggin2:U1V10F5 VR1
-U 1 1 622034FF
-P 7500 5700
-F 0 "VR1" V 7950 5700 50  0000 C CNN
-F 1 "U1V10F5" V 7850 5700 50  0000 C CNN
-F 2 "Noggin:U1V10F5-VR" H 7500 5450 50  0001 C CNN
-F 3 "" H 7500 5450 50  0001 C CNN
-	1    7500 5700
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:+3.3V #PWR0119
-U 1 1 62204431
-P 7700 5600
-F 0 "#PWR0119" H 7700 5450 50  0001 C CNN
-F 1 "+3.3V" H 7715 5773 50  0000 C CNN
-F 2 "" H 7700 5600 50  0001 C CNN
-F 3 "" H 7700 5600 50  0001 C CNN
-	1    7700 5600
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0120
-U 1 1 62204CFE
-P 7700 5700
-F 0 "#PWR0120" H 7700 5450 50  0001 C CNN
-F 1 "GND" V 7705 5572 50  0000 R CNN
-F 2 "" H 7700 5700 50  0001 C CNN
-F 3 "" H 7700 5700 50  0001 C CNN
-	1    7700 5700
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:+5V #PWR0126
-U 1 1 62205F33
-P 7700 5800
-F 0 "#PWR0126" H 7700 5650 50  0001 C CNN
-F 1 "+5V" H 7715 5973 50  0000 C CNN
-F 2 "" H 7700 5800 50  0001 C CNN
-F 3 "" H 7700 5800 50  0001 C CNN
-	1    7700 5800
-	-1   0    0    1   
-$EndComp
-Text Notes 7900 5550 0    50   ~ 0
-3V to 5V
 $Comp
 L power:+3.3V #PWR0129
 U 1 1 62282C70
@@ -567,17 +504,6 @@ IO26
 Text GLabel 5350 6550 0    50   Input ~ 0
 IO17
 $Comp
-L Connector:Conn_01x06_Female J16
-U 1 1 623244BF
-P 7850 1250
-F 0 "J16" H 7878 1226 50  0000 L CNN
-F 1 "Conn_01x06_Female" H 7878 1135 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 7850 1250 50  0001 C CNN
-F 3 "~" H 7850 1250 50  0001 C CNN
-	1    7850 1250
-	1    0    0    -1  
-$EndComp
-$Comp
 L 74xx:74HC14 U1
 U 7 1 6234F435
 P 1900 7300
@@ -612,50 +538,20 @@ F 3 "" H 2400 7300 50  0001 C CNN
 $EndComp
 Wire Notes Line
 	7150 700  10950 700 
-$Comp
-L Connector_Generic:Conn_01x05 J2
-U 1 1 6221F046
-P 10300 4800
-F 0 "J2" H 10380 4842 50  0000 L CNN
-F 1 "Conn_01x05" H 10380 4751 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 10300 4800 50  0001 C CNN
-F 3 "~" H 10300 4800 50  0001 C CNN
-	1    10300 4800
-	1    0    0    -1  
-$EndComp
-Text GLabel 10100 4600 0    50   Input ~ 0
+Text GLabel 10650 4700 0    50   Input ~ 0
 IO23
-Text GLabel 10100 4700 0    50   Input ~ 0
-IO19
-Text GLabel 10100 4800 0    50   Input ~ 0
+Text GLabel 10650 4800 0    50   Input ~ 0
 IO5
-Text GLabel 10100 5000 0    50   Input ~ 0
+Text GLabel 10650 5000 0    50   Input ~ 0
 IO2
-Text GLabel 10100 4900 0    50   Input ~ 0
+Text GLabel 10650 4900 0    50   Input ~ 0
 IO4
 Wire Bus Line
 	9050 6400 11100 6400
 Wire Bus Line
 	11100 6400 11100 4200
-Text Notes 9700 4400 0    50   ~ 0
+Text Notes 10250 4400 0    50   ~ 0
 unused Pin Connectors
-$Comp
-L Connector_Generic:Conn_01x08 J1
-U 1 1 6229E8C6
-P 10200 5500
-F 0 "J1" H 10280 5492 50  0000 L CNN
-F 1 "Conn_01x08" H 10280 5401 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 10200 5500 50  0001 C CNN
-F 3 "~" H 10200 5500 50  0001 C CNN
-	1    10200 5500
-	1    0    0    -1  
-$EndComp
-Text GLabel 10000 5700 0    50   Input ~ 0
-IO14
-Text GLabel 10000 5800 0    50   Input ~ 0
-IO12
-Text GLabel 10000 5900 0    50   Input ~ 0
-IO13
 Text GLabel 10000 5600 0    50   Input ~ 0
 IO27
 Wire Wire Line
@@ -665,21 +561,6 @@ Wire Wire Line
 Connection ~ 2950 6750
 Wire Wire Line
 	2950 6750 3050 6750
-$Comp
-L Connector_Generic:Conn_01x02 J3
-U 1 1 6232DD59
-P 9700 6150
-F 0 "J3" H 9780 6142 50  0000 L CNN
-F 1 "Conn_01x02" H 9780 6051 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 9700 6150 50  0001 C CNN
-F 3 "~" H 9700 6150 50  0001 C CNN
-	1    9700 6150
-	1    0    0    -1  
-$EndComp
-Text GLabel 9500 6150 0    50   Input ~ 0
-SD2
-Text GLabel 9500 6250 0    50   Input ~ 0
-SD3
 Wire Notes Line
 	9050 6400 9050 4200
 Wire Notes Line
@@ -811,8 +692,6 @@ Wire Notes Line
 	1600 4700 7050 4700
 Text GLabel 4950 4200 2    50   Input ~ 0
 IO23
-Text GLabel 4950 3600 2    50   Input ~ 0
-IO19
 Text GLabel 4950 3400 2    50   Input ~ 0
 IO5
 $Comp
@@ -839,7 +718,7 @@ IO4
 Text GLabel 4950 2900 2    50   Input ~ 0
 IO2
 Text GLabel 3550 4100 0    50   Input ~ 0
-IO13
+MOSI
 $Comp
 L power:GND #PWR0135
 U 1 1 622C5E3B
@@ -874,9 +753,9 @@ F 3 "" H 3550 4000 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Text GLabel 3550 3900 0    50   Input ~ 0
-IO12
+MISO
 Text GLabel 3550 3800 0    50   Input ~ 0
-IO14
+SCLK
 Text GLabel 3550 3700 0    50   Input ~ 0
 IO27
 Wire Wire Line
@@ -961,34 +840,10 @@ Text GLabel 4950 3800 2    50   Input ~ 0
 SDA
 Text GLabel 4950 3500 2    50   Input ~ 0
 IO18
-Text GLabel 3550 4300 0    50   Input ~ 0
-SD3
-Text GLabel 3550 4200 0    50   Input ~ 0
-SD2
 Text GLabel 4950 3300 2    50   Input ~ 0
 IO17
 Text GLabel 4950 3200 2    50   Input ~ 0
 IO16
-$Comp
-L Noggin:PS1240P02BT LS1
-U 1 1 6215B3F6
-P 5800 2800
-F 0 "LS1" H 6428 2796 50  0000 L CNN
-F 1 "PS1240P02BT" H 6428 2705 50  0000 L CNN
-F 2 "Noggin:PS1240P02BT" H 6450 2900 50  0001 L CNN
-F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 6450 2800 50  0001 L CNN
-F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 6450 2700 50  0001 L CNN "Description"
-F 5 "TDK" H 6450 2500 50  0001 L CNN "Manufacturer_Name"
-F 6 "PS1240P02BT" H 6450 2400 50  0001 L CNN "Manufacturer_Part_Number"
-F 7 "810-PS1240P02BT" H 6450 2300 50  0001 L CNN "Mouser Part Number"
-F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 6450 2200 50  0001 L CNN "Mouser Price/Stock"
-F 9 "PS1240P02BT" H 6450 2100 50  0001 L CNN "Arrow Part Number"
-F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 6450 2000 50  0001 L CNN "Arrow Price/Stock"
-	1    5800 2800
-	1    0    0    -1  
-$EndComp
-Text Notes 6050 2650 0    50   ~ 0
-Buzzer
 Wire Notes Line
 	6350 2100 6350 500 
 Wire Notes Line
@@ -997,21 +852,8 @@ Text GLabel 2800 2800 0    50   Input ~ 0
 RESET
 Wire Wire Line
 	2800 2800 3550 2800
-$Comp
-L power:GND #PWR0112
-U 1 1 62274345
-P 5800 2900
-F 0 "#PWR0112" H 5800 2650 50  0001 C CNN
-F 1 "GND" H 5805 2727 50  0000 C CNN
-F 2 "" H 5800 2900 50  0001 C CNN
-F 3 "" H 5800 2900 50  0001 C CNN
-	1    5800 2900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2600 3300 2050 3300
-Wire Wire Line
-	4950 2800 5200 2800
 Wire Wire Line
 	2450 3400 3250 3400
 $Comp
@@ -1046,7 +888,7 @@ U 1 1 62152961
 P 2750 3300
 F 0 "D1" H 2743 3516 50  0000 C CNN
 F 1 "Green LED" H 2743 3425 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2750 3300 50  0001 C CNN
+F 2 "Noggin:0805_LED_Extended" H 2750 3300 50  0001 C CNN
 F 3 "~" H 2750 3300 50  0001 C CNN
 	1    2750 3300
 	1    0    0    -1  
@@ -1057,7 +899,7 @@ U 1 1 62153081
 P 2300 3400
 F 0 "D2" H 2293 3616 50  0000 C CNN
 F 1 "Red LED" H 2293 3525 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2300 3400 50  0001 C CNN
+F 2 "Noggin:0805_LED_Extended" H 2300 3400 50  0001 C CNN
 F 3 "~" H 2300 3400 50  0001 C CNN
 	1    2300 3400
 	1    0    0    -1  
@@ -1099,27 +941,6 @@ F 3 "" H 3250 2600 50  0001 C CNN
 	1    3250 2600
 	0    1    1    0   
 $EndComp
-Text GLabel 3550 4400 0    50   Input ~ 0
-CS
-Text GLabel 4950 2600 2    50   Input ~ 0
-SD0
-Text GLabel 4950 2700 2    50   Input ~ 0
-SD1
-Text GLabel 3550 4500 0    50   Input ~ 0
-CLK
-Wire Wire Line
-	5500 2800 5800 2800
-$Comp
-L Device:R R5
-U 1 1 6215ED9A
-P 5350 2800
-F 0 "R5" V 5143 2800 50  0000 C CNN
-F 1 "1K" V 5234 2800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5280 2800 50  0001 C CNN
-F 3 "~" H 5350 2800 50  0001 C CNN
-	1    5350 2800
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	3550 2700 3300 2700
 $Comp
@@ -1134,19 +955,9 @@ F 3 "" H 3300 2700 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 Wire Notes Line
-	7050 2100 7050 4700
-Wire Notes Line
 	1600 2100 1600 4700
 Wire Notes Line
 	1600 2100 7050 2100
-Wire Notes Line
-	7250 6100 8400 6100
-Wire Notes Line
-	8400 5100 7250 5100
-Wire Notes Line
-	7250 5100 7250 6100
-Wire Notes Line
-	8400 5100 8400 6100
 $Comp
 L Transistor_FET:BSS138 Q2
 U 1 1 622BDDEC
@@ -1305,4 +1116,374 @@ Wire Notes Line
 	10850 3750 7700 3750
 Wire Notes Line
 	7700 3750 7700 1900
+Text GLabel 5350 6700 0    50   Input ~ 0
+SCLK
+Text GLabel 5200 2800 2    50   Input ~ 0
+CS
+$Comp
+L Device:R R5
+U 1 1 6215ED9A
+P 5400 3600
+F 0 "R5" V 5193 3600 50  0000 C CNN
+F 1 "1K" V 5284 3600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5330 3600 50  0001 C CNN
+F 3 "~" H 5400 3600 50  0001 C CNN
+	1    5400 3600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5550 3600 5850 3600
+Wire Wire Line
+	4950 2800 5200 2800
+$Comp
+L power:GND #PWR0112
+U 1 1 62274345
+P 5850 3700
+F 0 "#PWR0112" H 5850 3450 50  0001 C CNN
+F 1 "GND" H 5855 3527 50  0000 C CNN
+F 2 "" H 5850 3700 50  0001 C CNN
+F 3 "" H 5850 3700 50  0001 C CNN
+	1    5850 3700
+	1    0    0    -1  
+$EndComp
+Text Notes 6100 3450 0    50   ~ 0
+Buzzer
+$Comp
+L Noggin:PS1240P02BT LS1
+U 1 1 6215B3F6
+P 5850 3600
+F 0 "LS1" H 6478 3596 50  0000 L CNN
+F 1 "PS1240P02BT" H 6478 3505 50  0000 L CNN
+F 2 "Noggin:PS1240P02BT" H 6500 3700 50  0001 L CNN
+F 3 "https://product.tdk.com/system/files/dam/doc/product/sw_piezo/sw_piezo/piezo-buzzer/catalog/piezoelectronic_buzzer_ps_en.pdf" H 6500 3600 50  0001 L CNN
+F 4 "Piezoelectric Buzzers, Sound Pressure Level=70dB min, Freq.=4000Hz nom" H 6500 3500 50  0001 L CNN "Description"
+F 5 "TDK" H 6500 3300 50  0001 L CNN "Manufacturer_Name"
+F 6 "PS1240P02BT" H 6500 3200 50  0001 L CNN "Manufacturer_Part_Number"
+F 7 "810-PS1240P02BT" H 6500 3100 50  0001 L CNN "Mouser Part Number"
+F 8 "https://www.mouser.co.uk/ProductDetail/TDK/PS1240P02BT?qs=d7g9p1yFhWaZXSY9MjKMkw%3D%3D" H 6500 3000 50  0001 L CNN "Mouser Price/Stock"
+F 9 "PS1240P02BT" H 6500 2900 50  0001 L CNN "Arrow Part Number"
+F 10 "https://www.arrow.com/en/products/ps1240p02bt/tdk?region=nac" H 6500 2800 50  0001 L CNN "Arrow Price/Stock"
+	1    5850 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 3600 5250 3600
+$Comp
+L Connector_Generic:Conn_01x06 J1
+U 1 1 622CB9C8
+P 9700 6000
+F 0 "J1" H 9780 5992 50  0000 L CNN
+F 1 "Conn_01x06" H 9780 5901 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 9700 6000 50  0001 C CNN
+F 3 "~" H 9700 6000 50  0001 C CNN
+	1    9700 6000
+	1    0    0    -1  
+$EndComp
+Text GLabel 9500 5800 0    50   Input ~ 0
+SD2
+Text GLabel 9500 5900 0    50   Input ~ 0
+SD3
+Text GLabel 9500 6000 0    50   Input ~ 0
+CMD
+Text GLabel 9500 6200 0    50   Input ~ 0
+SD0
+Text GLabel 9500 6300 0    50   Input ~ 0
+SD1
+Text GLabel 3550 4200 0    50   Input ~ 0
+SD2
+Text GLabel 3550 4300 0    50   Input ~ 0
+SD3
+Text GLabel 3550 4400 0    50   Input ~ 0
+CMD
+Text GLabel 3550 4500 0    50   Input ~ 0
+CLK
+Text GLabel 4950 2600 2    50   Input ~ 0
+SD0
+Text GLabel 4950 2700 2    50   Input ~ 0
+SD1
+Text GLabel 9500 6100 0    50   Input ~ 0
+CLK
+$Comp
+L Connector_Generic:Conn_01x05 J2
+U 1 1 622DA6FB
+P 10200 5400
+F 0 "J2" H 10280 5442 50  0000 L CNN
+F 1 "Conn_01x05" H 10280 5351 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 10200 5400 50  0001 C CNN
+F 3 "~" H 10200 5400 50  0001 C CNN
+	1    10200 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x04 J3
+U 1 1 622DB74B
+P 10850 4800
+F 0 "J3" H 10930 4792 50  0000 L CNN
+F 1 "Conn_01x04" H 10930 4701 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 10850 4800 50  0001 C CNN
+F 3 "~" H 10850 4800 50  0001 C CNN
+	1    10850 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R15
+U 1 1 6235086F
+P 7550 4350
+F 0 "R15" V 7343 4350 50  0000 C CNN
+F 1 "10k" V 7434 4350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 7480 4350 50  0001 C CNN
+F 3 "~" H 7550 4350 50  0001 C CNN
+	1    7550 4350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R16
+U 1 1 62350D2F
+P 7550 5050
+F 0 "R16" V 7757 5050 50  0000 C CNN
+F 1 "10k" V 7666 5050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 7480 5050 50  0001 C CNN
+F 3 "~" H 7550 5050 50  0001 C CNN
+	1    7550 5050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Noggin:MMBT2222 Q3
+U 1 1 62357F87
+P 7850 4350
+F 0 "Q3" H 8388 4396 50  0000 L CNN
+F 1 "MMBT2222" H 8388 4305 50  0000 L CNN
+F 2 "Noggin:SOT95P240X114-3N" H 8400 4200 50  0001 L CNN
+F 3 "https://componentsearchengine.com/Datasheets/1/MMBT2222.pdf" H 8400 4100 50  0001 L CNN
+F 4 "Bipolar Transistors - BJT NPN Transistor General Purpose" H 8400 4000 50  0001 L CNN "Description"
+F 5 "1.14" H 8400 3900 50  0001 L CNN "Height"
+F 6 "ON Semiconductor" H 8400 3800 50  0001 L CNN "Manufacturer_Name"
+F 7 "MMBT2222" H 8400 3700 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "512-MMBT2222" H 8400 3600 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/ON-Semiconductor-Fairchild/MMBT2222/?qs=UMEuL5FsraD0NR7loUMuuw%3D%3D" H 8400 3500 50  0001 L CNN "Mouser Price/Stock"
+	1    7850 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7350 4000 7350 4350
+Wire Wire Line
+	7350 4350 7400 4350
+Wire Wire Line
+	6950 5100 7400 5100
+Wire Wire Line
+	7400 5100 7400 5050
+Wire Wire Line
+	8250 4650 7400 4650
+Wire Wire Line
+	7400 4650 7400 5050
+Connection ~ 7400 5050
+Wire Wire Line
+	8250 4750 7350 4750
+Wire Wire Line
+	7350 4750 7350 4350
+Connection ~ 7350 4350
+Wire Wire Line
+	7700 4350 7850 4350
+Wire Wire Line
+	7700 5050 7850 5050
+Text GLabel 8250 4050 2    50   Input ~ 0
+IO0
+Text GLabel 8250 5350 2    50   Input ~ 0
+RESET
+Text GLabel 7350 4000 1    50   Input ~ 0
+RTS
+Text GLabel 6950 5100 0    50   Input ~ 0
+DTR
+Wire Notes Line
+	3350 500  4800 500 
+Wire Wire Line
+	3550 1500 3550 1800
+$Comp
+L Device:CP1 C4
+U 1 1 6237AED5
+P 3550 1350
+F 0 "C4" H 3665 1396 50  0000 L CNN
+F 1 "1u" H 3665 1305 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 3550 1350 50  0001 C CNN
+F 3 "~" H 3550 1350 50  0001 C CNN
+	1    3550 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0113
+U 1 1 6237AEDC
+P 3950 1800
+F 0 "#PWR0113" H 3950 1550 50  0001 C CNN
+F 1 "GND" H 3955 1627 50  0000 C CNN
+F 2 "" H 3950 1800 50  0001 C CNN
+F 3 "" H 3950 1800 50  0001 C CNN
+	1    3950 1800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4250 1800 3950 1800
+Wire Wire Line
+	3550 1800 3950 1800
+Connection ~ 3950 1800
+Connection ~ 4250 1050
+Wire Wire Line
+	4250 1050 4250 1000
+Connection ~ 3900 1050
+Wire Wire Line
+	3550 1050 3900 1050
+Wire Wire Line
+	3550 1200 3550 1050
+Wire Wire Line
+	4250 1050 3900 1050
+Wire Wire Line
+	4250 1200 4250 1050
+Wire Wire Line
+	4250 1650 4250 1800
+$Comp
+L power:+3.3V #PWR0132
+U 1 1 6237AEED
+P 3900 750
+F 0 "#PWR0132" H 3900 600 50  0001 C CNN
+F 1 "+3.3V" H 3915 923 50  0000 C CNN
+F 2 "" H 3900 750 50  0001 C CNN
+F 3 "" H 3900 750 50  0001 C CNN
+	1    3900 750 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW4
+U 1 1 6237AEF3
+P 4250 1400
+F 0 "SW4" V 4204 1548 50  0000 L CNN
+F 1 "SW_Push" V 4295 1548 50  0000 L CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 4250 1600 50  0001 C CNN
+F 3 "~" H 4250 1600 50  0001 C CNN
+	1    4250 1400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R14
+U 1 1 6237AEF9
+P 3900 900
+F 0 "R14" H 3970 946 50  0000 L CNN
+F 1 "10K" H 3970 855 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3830 900 50  0001 C CNN
+F 3 "~" H 3900 900 50  0001 C CNN
+	1    3900 900 
+	1    0    0    -1  
+$EndComp
+Wire Notes Line
+	4800 2100 4800 500 
+Wire Notes Line
+	3350 500  3350 2100
+Wire Notes Line
+	7050 2100 7050 4700
+Text GLabel 4250 1000 2    50   Input ~ 0
+IO0
+$Comp
+L Noggin:MMBT2222 Q4
+U 1 1 62359CB4
+P 7850 5050
+F 0 "Q4" H 8388 5004 50  0000 L CNN
+F 1 "MMBT2222" H 8388 5095 50  0000 L CNN
+F 2 "Noggin:SOT95P240X114-3N" H 8400 4900 50  0001 L CNN
+F 3 "https://componentsearchengine.com/Datasheets/1/MMBT2222.pdf" H 8400 4800 50  0001 L CNN
+F 4 "Bipolar Transistors - BJT NPN Transistor General Purpose" H 8400 4700 50  0001 L CNN "Description"
+F 5 "1.14" H 8400 4600 50  0001 L CNN "Height"
+F 6 "ON Semiconductor" H 8400 4500 50  0001 L CNN "Manufacturer_Name"
+F 7 "MMBT2222" H 8400 4400 50  0001 L CNN "Manufacturer_Part_Number"
+F 8 "512-MMBT2222" H 8400 4300 50  0001 L CNN "Mouser Part Number"
+F 9 "https://www.mouser.co.uk/ProductDetail/ON-Semiconductor-Fairchild/MMBT2222/?qs=UMEuL5FsraD0NR7loUMuuw%3D%3D" H 8400 4200 50  0001 L CNN "Mouser Price/Stock"
+	1    7850 5050
+	1    0    0    1   
+$EndComp
+Wire Notes Line
+	7000 5400 7000 6400
+Wire Notes Line
+	8150 5400 7000 5400
+Text Notes 7650 5850 0    50   ~ 0
+3V to 5V
+$Comp
+L power:+5V #PWR0126
+U 1 1 62205F33
+P 7450 5900
+F 0 "#PWR0126" H 7450 5750 50  0001 C CNN
+F 1 "+5V" H 7465 6073 50  0000 C CNN
+F 2 "" H 7450 5900 50  0001 C CNN
+F 3 "" H 7450 5900 50  0001 C CNN
+	1    7450 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0120
+U 1 1 62204CFE
+P 7450 6000
+F 0 "#PWR0120" H 7450 5750 50  0001 C CNN
+F 1 "GND" V 7455 5872 50  0000 R CNN
+F 2 "" H 7450 6000 50  0001 C CNN
+F 3 "" H 7450 6000 50  0001 C CNN
+	1    7450 6000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+3.3V #PWR0119
+U 1 1 62204431
+P 7450 6100
+F 0 "#PWR0119" H 7450 5950 50  0001 C CNN
+F 1 "+3.3V" H 7465 6273 50  0000 C CNN
+F 2 "" H 7450 6100 50  0001 C CNN
+F 3 "" H 7450 6100 50  0001 C CNN
+	1    7450 6100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Noggin2:U1V10F5 VR1
+U 1 1 622034FF
+P 7250 6000
+F 0 "VR1" V 7700 6000 50  0000 C CNN
+F 1 "U1V10F5" V 7600 6000 50  0000 C CNN
+F 2 "Noggin:U1V10F5-VR" H 7250 5750 50  0001 C CNN
+F 3 "" H 7250 5750 50  0001 C CNN
+	1    7250 6000
+	0    -1   -1   0   
+$EndComp
+Wire Notes Line
+	7000 6400 8150 6400
+Wire Notes Line
+	8150 5400 8150 6400
+Wire Notes Line
+	6650 4900 7100 4900
+Wire Notes Line
+	7100 4900 7100 3700
+Wire Notes Line
+	7100 3700 7500 3700
+Wire Notes Line
+	7500 3700 7500 3900
+Wire Notes Line
+	7500 3900 8650 3900
+Wire Notes Line
+	8650 3900 8650 5500
+Wire Notes Line
+	8200 5500 8200 5300
+Wire Notes Line
+	8200 5300 6650 5300
+Wire Notes Line
+	6650 5300 6650 4900
+Wire Notes Line
+	8200 5500 8650 5500
+Text Notes 7500 4000 0    50   ~ 0
+Programming Header\n
+$Comp
+L Connector:Conn_01x07_Female J4
+U 1 1 623A2C66
+P 7850 1350
+F 0 "J4" H 7878 1376 50  0000 L CNN
+F 1 "Conn_01x07_Female" H 7878 1285 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical" H 7850 1350 50  0001 C CNN
+F 3 "~" H 7850 1350 50  0001 C CNN
+	1    7850 1350
+	1    0    0    -1  
+$EndComp
+Text GLabel 7650 1650 0    50   Input ~ 0
+RTS
 $EndSCHEMATC

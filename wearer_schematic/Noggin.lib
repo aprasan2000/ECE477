@@ -58,6 +58,34 @@ X IO33 9 0 -800 200 R 50 50 0 0 P
 ENDDRAW
 ENDDEF
 #
+# MMBT2222
+#
+DEF MMBT2222 Q 0 30 Y Y 1 F N
+F0 "Q" 550 50 50 H V L CNN
+F1 "MMBT2222" 550 -50 50 H V L CNN
+F2 "SOT95P240X114-3N" 550 -150 50 H I L CNN
+F3 "https://componentsearchengine.com/Datasheets/1/MMBT2222.pdf" 550 -250 50 H I L CNN
+F4 "Bipolar Transistors - BJT NPN Transistor General Purpose" 550 -350 50 H I L CNN "Description"
+F5 "1.14" 550 -450 50 H I L CNN "Height"
+F6 "ON Semiconductor" 550 -550 50 H I L CNN "Manufacturer_Name"
+F7 "MMBT2222" 550 -650 50 H I L CNN "Manufacturer_Part_Number"
+F8 "512-MMBT2222" 550 -750 50 H I L CNN "Mouser Part Number"
+F9 "https://www.mouser.co.uk/ProductDetail/ON-Semiconductor-Fairchild/MMBT2222/?qs=UMEuL5FsraD0NR7loUMuuw%3D%3D" 550 -850 50 H I L CNN "Mouser Price/Stock"
+DRAW
+C 350 0 158 0 1 10 N
+P 2 0 1 6 100 0 300 0 N
+P 2 0 1 6 300 -50 400 -150 N
+P 2 0 1 6 300 50 400 150 N
+P 2 0 1 20 300 100 300 -100 N
+P 2 0 1 6 400 -150 400 -200 N
+P 2 0 1 6 400 150 400 200 N
+P 4 0 1 10 330 -100 350 -80 370 -120 330 -100 F
+X ~ 1 0 0 100 R 50 50 0 0 P
+X ~ 2 400 -300 100 U 50 50 0 0 P
+X ~ 3 400 300 100 D 50 50 0 0 P
+ENDDRAW
+ENDDEF
+#
 # OLED-1602A
 #
 DEF OLED-1602A U 0 40 Y Y 1 F N

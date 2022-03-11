@@ -1,4 +1,4 @@
-16947771216117074
+16952712664016085
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -52248,12 +52248,26 @@ net tie
 4
 4
 Noggin
+0805_LED_Extended
+
+
+0
+2
+2
+Noggin
 ESP32WROOM32D
 ESP32-WROOM-32D-1
 Antenna
 0
 39
 39
+Noggin
+Noggin
+SOT-23-2
+Transistor BJT NPN
+0
+3
+3
 Noggin
 PCF8574
 DW (R-PDSO-G16)
@@ -52282,6 +52296,13 @@ LoRa Module
 0
 14
 14
+Noggin
+SOT95P240X114-3N
+SOT-23-2
+Transistor BJT NPN
+0
+3
+3
 Noggin
 U1V10F5-VR
 Voltage regulator
