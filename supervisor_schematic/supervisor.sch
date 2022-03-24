@@ -299,25 +299,23 @@ Wire Notes Line
 	900  7600 4300 7600
 Text Notes 1500 4950 0    50   ~ 0
 Button Debouncing
-Text Notes 7450 900  0    50   ~ 0
-Will be using a usbC to serial module that will connect via these connectors. \nhttps://www.superhouse.tv/product/espflasher-esp8266-esp32-usb-serial-flasher/
-Text Notes 8200 1100 0    50   ~ 0
+Text Notes 8150 950  0    50   ~ 0
 Programming Header
-Text GLabel 7650 1050 0    50   Input ~ 0
+Text GLabel 7600 900  0    50   Input ~ 0
 DTR
-Text GLabel 7650 1250 0    50   Input ~ 0
+Text GLabel 7600 1100 0    50   Input ~ 0
 RX
-Text GLabel 7650 1150 0    50   Input ~ 0
+Text GLabel 7600 1000 0    50   Input ~ 0
 TX
 $Comp
 L power:GND #PWR0114
 U 1 1 6232C2D0
-P 7650 1550
-F 0 "#PWR0114" H 7650 1300 50  0001 C CNN
-F 1 "GND" V 7655 1422 50  0000 R CNN
-F 2 "" H 7650 1550 50  0001 C CNN
-F 3 "" H 7650 1550 50  0001 C CNN
-	1    7650 1550
+P 7600 1400
+F 0 "#PWR0114" H 7600 1150 50  0001 C CNN
+F 1 "GND" V 7605 1272 50  0000 R CNN
+F 2 "" H 7600 1400 50  0001 C CNN
+F 3 "" H 7600 1400 50  0001 C CNN
+	1    7600 1400
 	0    1    1    0   
 $EndComp
 Wire Notes Line
@@ -536,8 +534,6 @@ F 3 "" H 2400 7300 50  0001 C CNN
 	1    2400 7300
 	-1   0    0    1   
 $EndComp
-Wire Notes Line
-	7150 700  10950 700 
 Text GLabel 10650 4700 0    50   Input ~ 0
 IO23
 Text GLabel 10650 4800 0    50   Input ~ 0
@@ -593,10 +589,6 @@ F 3 "" H 9750 2650 50  0001 C CNN
 $EndComp
 Text Notes 9550 2400 0    50   ~ 0
 LED Display Headers\n
-Wire Notes Line
-	10950 1700 10950 700 
-Wire Notes Line
-	7150 1700 10950 1700
 $Comp
 L Connector:Conn_01x04_Female J17
 U 1 1 623C20E4
@@ -1476,14 +1468,20 @@ Programming Header\n
 $Comp
 L Connector:Conn_01x07_Female J4
 U 1 1 623A2C66
-P 7850 1350
-F 0 "J4" H 7878 1376 50  0000 L CNN
-F 1 "Conn_01x07_Female" H 7878 1285 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical" H 7850 1350 50  0001 C CNN
-F 3 "~" H 7850 1350 50  0001 C CNN
-	1    7850 1350
+P 7800 1200
+F 0 "J4" H 7828 1226 50  0000 L CNN
+F 1 "Conn_01x07_Female" H 7828 1135 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x07_P2.54mm_Vertical" H 7800 1200 50  0001 C CNN
+F 3 "~" H 7800 1200 50  0001 C CNN
+	1    7800 1200
 	1    0    0    -1  
 $EndComp
-Text GLabel 7650 1650 0    50   Input ~ 0
+Text GLabel 7600 1500 0    50   Input ~ 0
 RTS
+Wire Notes Line
+	7150 1700 9150 1700
+Wire Notes Line
+	9150 1700 9150 700 
+Wire Notes Line
+	9150 700  7150 700 
 $EndSCHEMATC
