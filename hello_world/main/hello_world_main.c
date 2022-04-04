@@ -14,6 +14,11 @@
 #define LOW_VOLTAGE 3500 // mV
 #define ADC_CORRECTION 0.977
 
+#define LEDC_HS_TIMER          LEDC_TIMER_0
+#define LEDC_HS_MODE           LEDC_HIGH_SPEED_MODE
+#define LEDC_HS_CH0_GPIO       (9)
+#define LEDC_HS_CH0_CHANNEL    LEDC_CHANNEL_0
+
 // Steps if idf.py not found
 // run ". export.sh" (Mac)
 // then go to project and build
@@ -67,7 +72,53 @@
 //   }
 // }
 
+void beepInit(void* arg)
+{
+    cprintf("initializing pwm");
+    ledc_timer_config_t ledc_timer = {
+        .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
+        .freq_hz = 5000,                      // frequency of PWM signal
+        .speed_mode = LEDC_LS_MODE,           // timer mode
+        .timer_num = LEDC_LS_TIMER,            // timer index
+        .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
+    };
+    // Set configuration of timer0 for high speed channels
+    ledc_timer_config(&ledc_timer);
+    
+    ledc_channel_config_t ledc_channel[LEDC_TEST_CH_NUM] = {
+        .channel    = LEDC_HS_CH0_CHANNEL,
+        .duty       = 0,
+        .gpio_num   = LEDC_HS_CH0_GPIO,
+        .speed_mode = LEDC_HS_MODE,
+        .hpoint     = 0,
+        .timer_sel  = LEDC_HS_TIMER,
+        .flags.output_invert = 0
+    };
+    
+    int ch;
+    for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
+        ledc_channel_config(&ledc_channel[ch]);
+    }    
+    
+    
+    vTaskDelete(NULL);
+}
 
+void beep(void* arg)
+{
+    printf("LOW Battery\n");
+    ledc_timer_config_t ledc_timer = {
+        .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
+        .freq_hz = 5000,                      // frequency of PWM signal
+        .speed_mode = LEDC_HS_MODE,           // timer mode
+        .timer_num = LEDC_HS_TIMER,            // timer index
+        .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
+    };
+    // Set configuration of timer0 for high speed channels
+    ledc_timer_config(&ledc_timer);
+
+    vTaskDelete(NULL);
+}
 
 void readBatt(void* arg)
 {
@@ -86,7 +137,7 @@ void readBatt(void* arg)
         real_voltage = (uint32_t)(voltage * 2 * ADC_CORRECTION);
         // printf("%d mV\n", real_voltage);
         if(real_voltage < LOW_VOLTAGE){
-            printf("LOW Battery\n");
+            xTaskCreate(beep, "beep", 2048, NULL, 5, NULL);
             for(int i = 0; i < 10; i++){
                 x = !x;
                 gpio_set_level(GPIO_NUM_27, x);
@@ -103,6 +154,8 @@ void app_main(void)
     gpio_pad_select_gpio(GPIO_NUM_27);
     gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT);
     gpio_set_level(GPIO_NUM_27, 1);
+
+    xTaskCreate(beepInit, "init pwm for buzzer", 2048, NULL, 5, NULL);
     
     // int x = 0;
     // while(1){
