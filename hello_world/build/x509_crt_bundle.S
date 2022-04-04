@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/aksha/OneDrive/Akshaj/Documents/GitHub/ECE477/hello_world/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Code/ECE477/hello_world/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

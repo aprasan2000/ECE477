@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/aksha/OneDrive/Akshaj/Documents/GitHub/ECE477/hello_world/main
+# Install script for directory: C:/Code/ECE477/hello_world/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
