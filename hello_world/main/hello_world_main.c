@@ -13,6 +13,7 @@
 #define V_REF 1100
 #define LOW_VOLTAGE 3500 // mV
 #define ADC_CORRECTION 0.977
+#define L_TO_H_COEFF 1.515
 
 #define LEDC_HS_TIMER          LEDC_TIMER_0
 #define LEDC_HS_MODE           LEDC_HIGH_SPEED_MODE
@@ -72,79 +73,125 @@
 //   }
 // }
 
-void beepInit(void* arg)
-{
-    cprintf("initializing pwm");
-    ledc_timer_config_t ledc_timer = {
-        .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
-        .freq_hz = 5000,                      // frequency of PWM signal
-        .speed_mode = LEDC_LS_MODE,           // timer mode
-        .timer_num = LEDC_LS_TIMER,            // timer index
-        .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
-    };
-    // Set configuration of timer0 for high speed channels
-    ledc_timer_config(&ledc_timer);
+// void beepInit(void* arg)
+// {
+//     cprintf("initializing pwm");
+//     ledc_timer_config_t ledc_timer = {
+//         .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
+//         .freq_hz = 5000,                      // frequency of PWM signal
+//         .speed_mode = LEDC_LS_MODE,           // timer mode
+//         .timer_num = LEDC_LS_TIMER,            // timer index
+//         .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
+//     };
+//     // Set configuration of timer0 for high speed channels
+//     ledc_timer_config(&ledc_timer);
     
-    ledc_channel_config_t ledc_channel[LEDC_TEST_CH_NUM] = {
-        .channel    = LEDC_HS_CH0_CHANNEL,
-        .duty       = 0,
-        .gpio_num   = LEDC_HS_CH0_GPIO,
-        .speed_mode = LEDC_HS_MODE,
-        .hpoint     = 0,
-        .timer_sel  = LEDC_HS_TIMER,
-        .flags.output_invert = 0
-    };
+//     ledc_channel_config_t ledc_channel[LEDC_TEST_CH_NUM] = {
+//         .channel    = LEDC_HS_CH0_CHANNEL,
+//         .duty       = 0,
+//         .gpio_num   = LEDC_HS_CH0_GPIO,
+//         .speed_mode = LEDC_HS_MODE,
+//         .hpoint     = 0,
+//         .timer_sel  = LEDC_HS_TIMER,
+//         .flags.output_invert = 0
+//     };
     
-    int ch;
-    for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
-        ledc_channel_config(&ledc_channel[ch]);
-    }    
+//     int ch;
+//     for (ch = 0; ch < LEDC_TEST_CH_NUM; ch++) {
+//         ledc_channel_config(&ledc_channel[ch]);
+//     }    
     
     
-    vTaskDelete(NULL);
-}
+//     vTaskDelete(NULL);
+// }
 
-void beep(void* arg)
-{
-    printf("LOW Battery\n");
-    ledc_timer_config_t ledc_timer = {
-        .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
-        .freq_hz = 5000,                      // frequency of PWM signal
-        .speed_mode = LEDC_HS_MODE,           // timer mode
-        .timer_num = LEDC_HS_TIMER,            // timer index
-        .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
-    };
-    // Set configuration of timer0 for high speed channels
-    ledc_timer_config(&ledc_timer);
+// void beep(void* arg)
+// {
+//     printf("LOW Battery\n");
+//     ledc_timer_config_t ledc_timer = {
+//         .duty_resolution = LEDC_TIMER_13_BIT, // resolution of PWM duty
+//         .freq_hz = 5000,                      // frequency of PWM signal
+//         .speed_mode = LEDC_HS_MODE,           // timer mode
+//         .timer_num = LEDC_HS_TIMER,            // timer index
+//         .clk_cfg = LEDC_AUTO_CLK,              // Auto select the source clock
+//     };
+//     // Set configuration of timer0 for high speed channels
+//     ledc_timer_config(&ledc_timer);
 
-    vTaskDelete(NULL);
-}
+//     vTaskDelete(NULL);
+// }
 
-void readBatt(void* arg)
+// void readBatt(void* arg)
+// {
+//     // printf("reading battery...\n");
+//     esp_adc_cal_characteristics_t *adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
+//     esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, V_REF, adc_chars);
+//     esp_err_t err = adc_set_data_inv(ADC_UNIT_1, 1);
+//     uint32_t reading, voltage, real_voltage, x;
+//     x = 0;
+//     while(1)
+//     {
+//         vTaskDelay(200/portTICK_RATE_MS); // read delay
+//         reading = adc1_get_raw(ADC1_CHANNEL_6);
+//         // printf("reading: %d\n", reading);
+//         voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+//         real_voltage = (uint32_t)(voltage * 2 * ADC_CORRECTION);
+//         // printf("%d mV\n", real_voltage);
+//         if(real_voltage < LOW_VOLTAGE){
+//             xTaskCreate(beep, "beep", 2048, NULL, 5, NULL);
+//             for(int i = 0; i < 10; i++){
+//                 x = !x;
+//                 gpio_set_level(GPIO_NUM_27, x);
+//                 vTaskDelay(100/portTICK_RATE_MS);
+//             }
+//         }
+//     }
+// }
+
+void gasSensorPrelim(void* arg)
 {
-    // printf("reading battery...\n");
+    printf("gas sensor code running...\n");
+    // Init GPIO25
+    gpio_pad_select_gpio(GPIO_NUM_25);
+    gpio_set_direction(GPIO_NUM_25, GPIO_MODE_OUTPUT);
+    gpio_set_level(GPIO_NUM_25, 0);
+    // Init ADC
     esp_adc_cal_characteristics_t *adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
     esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, V_REF, adc_chars);
     esp_err_t err = adc_set_data_inv(ADC_UNIT_1, 1);
-    uint32_t reading, voltage, real_voltage, x;
-    x = 0;
-    while(1)
-    {
-        vTaskDelay(200/portTICK_RATE_MS); // read delay
-        reading = adc1_get_raw(ADC1_CHANNEL_6);
-        // printf("reading: %d\n", reading);
-        voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
-        real_voltage = (uint32_t)(voltage * 2 * ADC_CORRECTION);
-        // printf("%d mV\n", real_voltage);
-        if(real_voltage < LOW_VOLTAGE){
-            xTaskCreate(beep, "beep", 2048, NULL, 5, NULL);
-            for(int i = 0; i < 10; i++){
-                x = !x;
-                gpio_set_level(GPIO_NUM_27, x);
-                vTaskDelay(100/portTICK_RATE_MS);
-            }
+    uint32_t reading, voltage, real_voltage, i;
+
+    while(1){
+        // Turn off MOSFET (LOW VOLTAGE )
+        gpio_set_level(GPIO_NUM_25, 0);
+        printf("...MOSFET off\n");
+        // Wait x seconds
+        for(i = 0; i < 45; i++){
+            printf("...i: %d\n", i);
+            vTaskDelay(1000/portTICK_RATE_MS);
+            // Read ADC
+            reading = adc1_get_raw(ADC1_CHANNEL_5);
+            voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+            printf("...raw voltage: %d mV\n", voltage);
+            printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
+        }
+        // // Read ADC
+        // reading = adc1_get_raw(ADC1_CHANNEL_5);
+        // voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+        // printf("...raw voltage: %d mV\n", voltage);
+        // printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
+
+        // Turn on MOSFET (HIGH VOLTAGE)
+        gpio_set_level(GPIO_NUM_25, 1);
+        printf("...MOSFET on\n");
+            // Wait x seconds
+        for(i = 0; i < 30; i++){
+            printf("...i: %d\n", i);
+            vTaskDelay(1000/portTICK_RATE_MS);
         }
     }
+
+    vTaskDelete(NULL);
 }
 
 void app_main(void)
@@ -155,7 +202,8 @@ void app_main(void)
     gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT);
     gpio_set_level(GPIO_NUM_27, 1);
 
-    xTaskCreate(beepInit, "init pwm for buzzer", 2048, NULL, 5, NULL);
+    // xTaskCreate(beepInit, "init pwm for buzzer", 2048, NULL, 5, NULL);
+    xTaskCreate(gasSensorPrelim, "prelim code for gas sensor", 2048, NULL, 5, NULL);
     
     // int x = 0;
     // while(1){
@@ -194,7 +242,7 @@ void app_main(void)
 
     // // ADC
     // xTaskCreate(readPulse, "read pulse values", 2048, NULL, 5, NULL);
-    xTaskCreate(readBatt, "battery voltage", 2048, NULL, 5, NULL);
+    // xTaskCreate(readBatt, "battery voltage", 2048, NULL, 5, NULL);
 
     // UART Example
     // const uart_port_t uart_num = UART_NUM_2; // Change UART number
