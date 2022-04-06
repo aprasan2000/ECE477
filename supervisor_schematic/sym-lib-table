@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name Noggin)(type Legacy)(uri C:/Users/aksha/OneDrive/Akshaj/Documents/GitHub/ECE477/wearer_schematic/Noggin.lib)(options "")(descr ""))
+  (lib (name supervisor-rescue)(type Legacy)(uri ${KIPRJMOD}/supervisor-rescue.lib)(options "")(descr ""))
 )
