@@ -11,11 +11,11 @@
 #include <string.h>
 #include <ctype.h>
 
-#define CONFIG_CS_GPIO     4//15//4
-#define CONFIG_RST_GPIO    3//16//3
-#define CONFIG_MISO_GPIO   19//12//19
-#define CONFIG_MOSI_GPIO   18//13//18
-#define CONFIG_SCK_GPIO    5//14//5
+#define CONFIG_CS_GPIO     15//4
+#define CONFIG_RST_GPIO    18//3
+#define CONFIG_MISO_GPIO   12//19
+#define CONFIG_MOSI_GPIO   13//18
+#define CONFIG_SCK_GPIO    14//5
 #define LCD1602_GPIO_SDA	21
 #define LCD1602_GPIO_SCL	22
 
