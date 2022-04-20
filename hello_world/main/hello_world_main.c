@@ -48,16 +48,16 @@
 //   }
 // }
 
-// void blink1Sec(void* arg)
-// {
-//   bool status = false;
-//   while(1)
-//   {
-//     vTaskDelay(1000/portTICK_RATE_MS);
-//     gpio_set_level(GPIO_NUM_25, status);
-//     status = !status;
-//   }
-// }
+void blink1Sec(void* arg)
+{
+  bool status = false;
+  while(1)
+  {
+    vTaskDelay(1000/portTICK_RATE_MS);
+    gpio_set_level(GPIO_NUM_27, status);
+    status = !status;
+  }
+}
 
 // void readPulse(void* arg)
 // {
@@ -183,6 +183,16 @@ void gasSensorPrelim(void* arg)
     vTaskDelete(NULL);
 }
 
+void readButton(void* arg)
+{
+    gpio_pad_select_gpio(GPIO_NUM_5);
+    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_INPUT);
+    while(1){
+        printf("...GPIO5: %d\n", gpio_get_level(GPIO_NUM_5));
+        vTaskDelay(250/portTICK_RATE_MS);
+    }
+}
+
 void app_main(void)
 {
     printf("running...\n");
@@ -192,14 +202,9 @@ void app_main(void)
     gpio_set_level(GPIO_NUM_27, 1);
 
     // xTaskCreate(beepInit, "init pwm for buzzer", 2048, NULL, 5, NULL);
-    // xTaskCreate(gasSensorPrelim, "prelim code for gas sensor", 2048, NULL, 5, NULL);
-
-    gpio_pad_select_gpio(GPIO_NUM_5);
-    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_INPUT);
-    while(1){
-        printf("...GPIO5: %d\n", gpio_get_level(GPIO_NUM_5));
-        vTaskDelay(250/portTICK_RATE_MS);
-    }
+    xTaskCreate(gasSensorPrelim, "prelim code for gas sensor", 2048, NULL, 5, NULL);
+    xTaskCreate(readButton, "prelim code for button", 2048, NULL, 5, NULL);
+    xTaskCreate(blink1Sec, "prelim code for blinking", 2048, NULL, 5, NULL);
     
     // int x = 0;
     // while(1){
