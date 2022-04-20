@@ -160,7 +160,15 @@ void gasSensorPrelim(void* arg)
     esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, V_REF, adc_chars);
     esp_err_t err = adc_set_data_inv(ADC_UNIT_1, 1);
     uint32_t reading, voltage, real_voltage, i;
-
+    // Heat up gas sensor
+    gpio_set_level(GPIO_NUM_25, 1);
+    for(int i = 0; i < 20; i++){
+        vTaskDelay(5000/portTICK_RATE_MS);
+        reading = adc1_get_raw(ADC1_CHANNEL_5);
+        voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+        printf("...raw voltage: %d mV\n", voltage);
+        printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
+    }
     while(1){
         // Turn on MOSFET (HIGH VOLTAGE)
         gpio_set_level(GPIO_NUM_25, 1);
