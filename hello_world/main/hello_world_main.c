@@ -162,33 +162,22 @@ void gasSensorPrelim(void* arg)
     uint32_t reading, voltage, real_voltage, i;
 
     while(1){
-        // Turn off MOSFET (LOW VOLTAGE )
-        gpio_set_level(GPIO_NUM_25, 0);
-        printf("...MOSFET off\n");
-        // Wait x seconds
-        for(i = 0; i < 45; i++){
-            printf("...i: %d\n", i);
-            vTaskDelay(1000/portTICK_RATE_MS);
-            // Read ADC
-            reading = adc1_get_raw(ADC1_CHANNEL_5);
-            voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
-            printf("...raw voltage: %d mV\n", voltage);
-            printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
-        }
-        // // Read ADC
-        // reading = adc1_get_raw(ADC1_CHANNEL_5);
-        // voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
-        // printf("...raw voltage: %d mV\n", voltage);
-        // printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
-
         // Turn on MOSFET (HIGH VOLTAGE)
         gpio_set_level(GPIO_NUM_25, 1);
         printf("...MOSFET on\n");
-            // Wait x seconds
-        for(i = 0; i < 30; i++){
-            printf("...i: %d\n", i);
-            vTaskDelay(1000/portTICK_RATE_MS);
-        }
+        // Wait 60 seconds
+        vTaskDelay(6000/portTICK_RATE_MS);
+
+        // Turn off MOSFET (LOW VOLTAGE )
+        gpio_set_level(GPIO_NUM_25, 0);
+        printf("...MOSFET off\n");
+        // Wait 90 seconds
+        vTaskDelay(9000/portTICK_RATE_MS);
+        // Read ADC
+        reading = adc1_get_raw(ADC1_CHANNEL_5);
+        voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+        printf("...raw voltage: %d mV\n", voltage);
+        printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
     }
 
     vTaskDelete(NULL);
@@ -203,7 +192,14 @@ void app_main(void)
     gpio_set_level(GPIO_NUM_27, 1);
 
     // xTaskCreate(beepInit, "init pwm for buzzer", 2048, NULL, 5, NULL);
-    xTaskCreate(gasSensorPrelim, "prelim code for gas sensor", 2048, NULL, 5, NULL);
+    // xTaskCreate(gasSensorPrelim, "prelim code for gas sensor", 2048, NULL, 5, NULL);
+
+    gpio_pad_select_gpio(GPIO_NUM_5);
+    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_INPUT);
+    while(1){
+        printf("...GPIO5: %d\n", gpio_get_level(GPIO_NUM_5));
+        vTaskDelay(250/portTICK_RATE_MS);
+    }
     
     // int x = 0;
     // while(1){
