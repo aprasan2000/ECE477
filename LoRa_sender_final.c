@@ -8,30 +8,35 @@
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
-#include <string.h>
-#include <ctype.h>
 
-#define CONFIG_CS_GPIO     4//15//4
-#define CONFIG_RST_GPIO    3//16//3
-#define CONFIG_MISO_GPIO   19//12//19
-#define CONFIG_MOSI_GPIO   18//13//18
-#define CONFIG_SCK_GPIO    5//14//5
-#define LCD1602_GPIO_SDA	21
-#define LCD1602_GPIO_SCL	22
+#define CONFIG_CS_GPIO     15//4
+#define CONFIG_RST_GPIO    16//3
+#define CONFIG_MISO_GPIO   12//19
+#define CONFIG_MOSI_GPIO   13//18
+#define CONFIG_SCK_GPIO    14//5
+#define LCD1602_GPIO_SDA	22
+#define LCD1602_GPIO_SCL	23
 
-#define I2C_MASTER_NUM             I2C_NUM_1        
-#define I2C_MASTER_TX_BUF_DISABLE  0                
-#define I2C_MASTER_RX_BUF_DISABLE  0                
-#define I2C_MASTER_FREQ_HZ         100000            
+#ifdef CONFIG_IDF_TARGET_ESP32
+#define SPI_HOST_ID HSPI_HOST
+#elif defined CONFIG_IDF_TARGET_ESP32S2
+#define SPI_HOST_ID SPI2_HOST
+#elif defined CONFIG_IDF_TARGET_ESP32C3
+#define SPI_HOST_ID SPI2_HOST
+#endif
+
+
+#define I2C_MASTER_NUM                 I2C_NUM_1        
+#define I2C_MASTER_TX_BUF_DISABLE      0                
+#define I2C_MASTER_RX_BUF_DISABLE      0                
+#define I2C_MASTER_FREQ_HZ             100000            
 #define LCD1602_I2C_ADDR (0x27)
-
-#define WRITE_BIT                          I2C_MASTER_WRITE 
-#define READ_BIT                           I2C_MASTER_READ  
-#define ACK_CHECK_EN                       0x1              
-#define ACK_CHECK_DIS                      0x0             
-#define ACK_VAL                            0x0            
-#define NACK_VAL                           0x1         
-
+#define WRITE_BIT                      I2C_MASTER_WRITE 
+#define READ_BIT                       I2C_MASTER_READ  
+#define ACK_CHECK_EN                   0x1              
+#define ACK_CHECK_DIS                  0x0             
+#define ACK_VAL                        0x0            
+#define NACK_VAL                       0x1         
 #define REG_FIFO                       0x00
 #define REG_OP_MODE                    0x01
 #define REG_FRF_MSB                    0x06
@@ -73,27 +78,20 @@
 #define PA_OUTPUT_RFO_PIN              0
 #define PA_OUTPUT_PA_BOOST_PIN         1
 #define TIMEOUT_RESET                  100
-#ifdef CONFIG_IDF_TARGET_ESP32
-#define SPI_HOST_ID HSPI_HOST
-#elif defined CONFIG_IDF_TARGET_ESP32S2
-#define SPI_HOST_ID SPI2_HOST
-#elif defined CONFIG_IDF_TARGET_ESP32C3
-#define SPI_HOST_ID SPI2_HOST
-#endif
-
-#define TAG "LORA"
-
-static spi_device_handle_t __spi;
-
 #define PIN_RS    (1 << 0)
 #define PIN_EN    (1 << 2)
 #define BACKLIGHT (1 << 3)
-
 #define LCD_DELAY_MS 5
 
+static spi_device_handle_t __spi;
 static int __implicit;
 static long __frequency;
 
+/**
+ * Write a value to a register.
+ * @param reg Register index.
+ * @param val Value to write.
+ */
 void 
 lora_write_reg(int reg, int val)
 {
@@ -106,7 +104,10 @@ lora_write_reg(int reg, int val)
       .tx_buffer = out,
       .rx_buffer = in  
    };
+
+   //gpio_set_level(CONFIG_CS_GPIO, 0);
    spi_device_transmit(__spi, &t);
+   //gpio_set_level(CONFIG_CS_GPIO, 1);
 }
 
 /**
@@ -282,7 +283,6 @@ lora_set_dio_mapping(int dio, int mode)
          _mode = _mode | mode;
       }
       lora_write_reg(REG_DIO_MAPPING_1, _mode);
-      ESP_LOGD(TAG, "REG_DIO_MAPPING_1=0x%02x", _mode);
    } else if (dio < 6) {
       int _mode = lora_read_reg(REG_DIO_MAPPING_2);
       if (dio == 4) {
@@ -292,7 +292,6 @@ lora_set_dio_mapping(int dio, int mode)
          _mode = _mode & 0xCF;
          _mode = _mode | (mode << 4);
       }
-      ESP_LOGD(TAG, "REG_DIO_MAPPING_2=0x%02x", _mode);
       lora_write_reg(REG_DIO_MAPPING_2, _mode);
    }
 }
@@ -306,7 +305,6 @@ lora_get_dio_mapping(int dio)
 {
    if (dio < 4) {
       int _mode = lora_read_reg(REG_DIO_MAPPING_1);
-      ESP_LOGD(TAG, "REG_DIO_MAPPING_1=0x%02x", _mode);
       if (dio == 0) {
          return ((_mode >> 6) & 0x03);
       } else if (dio == 1) {
@@ -318,7 +316,6 @@ lora_get_dio_mapping(int dio)
       }
    } else if (dio < 6) {
       int _mode = lora_read_reg(REG_DIO_MAPPING_2);
-      ESP_LOGD(TAG, "REG_DIO_MAPPING_2=0x%02x", _mode);
       if (dio == 4) {
          return ((_mode >> 6) & 0x03);
       } else if (dio == 5) {
@@ -340,13 +337,20 @@ lora_set_bandwidth(int sbw)
    }
 }
 
-
+/**
+ * Get bandwidth (bit rate)
+ * @param sbw Signal bandwidth(0 to 9)
+ */
 int 
 lora_get_bandwidth(void)
 {
    return ((lora_read_reg(REG_MODEM_CONFIG_1) & 0xf0) >> 4);
 }
 
+/**
+ * Set coding rate 
+ * @param denominator 5-8, Denominator for the coding rate 4/x
+ */ 
 void 
 lora_set_coding_rate(int denominator)
 {
@@ -389,10 +393,6 @@ lora_get_preamble_length(void)
    return preamble;
 }
 
-/**
- * Change radio sync word.
- * @param sw New sync word to use.
- */
 void 
 lora_set_sync_word(int sw)
 {
@@ -428,10 +428,8 @@ lora_init(void)
    /*
     * Configure CPU hardware to communicate with the radio chip
     */
-   //gpio_pad_select_gpio(CONFIG_RST_GPIO);
    gpio_reset_pin(CONFIG_RST_GPIO);
    gpio_set_direction(CONFIG_RST_GPIO, GPIO_MODE_OUTPUT);
-   //gpio_pad_select_gpio(CONFIG_CS_GPIO);
    gpio_reset_pin(CONFIG_CS_GPIO);
    gpio_set_direction(CONFIG_CS_GPIO, GPIO_MODE_OUTPUT);
    gpio_set_level(CONFIG_CS_GPIO, 1);
@@ -473,11 +471,9 @@ lora_init(void)
    uint8_t i = 0;
    while(i++ < TIMEOUT_RESET) {
       version = lora_read_reg(REG_VERSION);
-      ESP_LOGD(TAG, "version=0x%02x", version);
       if(version == 0x12) break;
       vTaskDelay(2);
    }
-   ESP_LOGD(TAG, "i=%d, TIMEOUT_RESET=%d", i, TIMEOUT_RESET);
    if (i == TIMEOUT_RESET + 1) return 0; // Illegal version
    //assert(i < TIMEOUT_RESET + 1); // at the end of the loop above, the max value i can reach is TIMEOUT_RESET + 1
 
@@ -567,9 +563,7 @@ lora_receive_packet(uint8_t *buf, int size)
 int
 lora_received(void)
 {
-   if(lora_read_reg(REG_IRQ_FLAGS) & IRQ_RX_DONE_MASK) {       
-      return 1;
-   }   
+   if(lora_read_reg(REG_IRQ_FLAGS) & IRQ_RX_DONE_MASK) return 1;
    return 0;
 }
 
@@ -608,12 +602,6 @@ void
 lora_close(void)
 {
    lora_sleep();
-//   close(__spi);  FIXME: end hardware features after lora_close
-//   close(__cs);
-//   close(__rst);
-//   __spi = -1;
-//   __cs = -1;
-//   __rst = -1;
 }
 
 void 
@@ -628,188 +616,22 @@ lora_dump_registers(void)
    printf("\n");
 }
 
-int lcd1602_write_cmd(uint8_t addr, uint8_t cmd)
+void task_tx(void *pvParameters)
 {
-    i2c_cmd_handle_t hCmd = i2c_cmd_link_create();
-    i2c_master_start(hCmd);
-    i2c_master_write_byte(hCmd, ( addr << 1 ) | WRITE_BIT, ACK_CHECK_EN);
-    i2c_master_write_byte(hCmd, cmd, ACK_CHECK_EN);
-    i2c_master_stop(hCmd);
-    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, hCmd, 10 / portTICK_RATE_MS);
-    i2c_cmd_link_delete(hCmd);
-
-    return ret;
+	ESP_LOGI(pcTaskGetName(NULL), "Start");
+	uint8_t buf[256]; 
+   vTaskDelay(pdMS_TO_TICKS(5000));
+	while(1) {
+		TickType_t nowTick = xTaskGetTickCount();
+		int send_len = sprintf((char *)buf,"%d",nowTick);
+		lora_send_packet(buf, send_len);
+		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", send_len);
+		vTaskDelay(pdMS_TO_TICKS(5000));
+	} 
 }
-
-int lcd1602_write_data(uint8_t addr, uint8_t data[], int len)
-{
-    i2c_cmd_handle_t hCmd = i2c_cmd_link_create();
-    i2c_master_start(hCmd);
-    i2c_master_write_byte(hCmd, ( addr << 1 ) | WRITE_BIT, ACK_CHECK_EN);
-    i2c_master_write(hCmd, data, len, ACK_CHECK_EN);
-    i2c_master_stop(hCmd);
-    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, hCmd, 10 / portTICK_RATE_MS);
-    i2c_cmd_link_delete(hCmd);
-
-    return ret;
-}
-
-int lcd1602_write_cmdNdata(uint8_t addr, uint8_t cmd, uint8_t data)
-{
-    i2c_cmd_handle_t hCmd = i2c_cmd_link_create();
-    i2c_master_start(hCmd);
-    i2c_master_write_byte(hCmd, ( addr << 1 ) | WRITE_BIT, ACK_CHECK_EN);
-    i2c_master_write_byte(hCmd, cmd, ACK_CHECK_EN);
-    i2c_master_write_byte(hCmd, data, ACK_CHECK_EN);
-    i2c_master_stop(hCmd);
-    esp_err_t ret = i2c_master_cmd_begin(I2C_MASTER_NUM, hCmd, 10 / portTICK_RATE_MS);
-    i2c_cmd_link_delete(hCmd);
-
-    return ret;
-}
-
-int lcd1602_SendInternal(uint8_t data, uint8_t flags)
-{
-	int res;
-	uint8_t up = data & 0xF0;
-	uint8_t lo = (data << 4) & 0xF0;
-
-	uint8_t data_arr[4];
-	data_arr[0] = up|flags|BACKLIGHT|PIN_EN;
-	data_arr[1] = up|flags|BACKLIGHT;
-	data_arr[2] = lo|flags|BACKLIGHT|PIN_EN;
-	data_arr[3] = lo|flags|BACKLIGHT;
-
-    res = lcd1602_write_data(LCD1602_I2C_ADDR, data_arr, 4);
-
-    vTaskDelay(LCD_DELAY_MS / portTICK_RATE_MS);
-	return res;
-}
-
-void lcd1602_SendCommand(uint8_t cmd)
-{
-	lcd1602_SendInternal(cmd, 0);
-}
-
-void lcd1602_SendData(uint8_t data)
-{
-	lcd1602_SendInternal(data, PIN_RS);
-}
-
-void lcd1602_SendString(char *str)
-{
-	while(*str)
-	{
-		lcd1602_SendData((uint8_t)(*str));
-		str++;
-	}
-}
-
-void lcd1602_Init(void)
-{
-	lcd1602_SendCommand(0x30);
-	lcd1602_SendCommand(0x02);
-	lcd1602_SendCommand(0x0C);
-	lcd1602_SendCommand(0x01);
-}
-
-void i2c_scan(void)
-{
-    int res;
-
-	for(uint16_t i = 0; i < 128; i++)
-	{
-		res = lcd1602_write_cmd(i, 0x00);
-		if(res == ESP_OK)
-		{
-    		char msg[64];
-
-    		snprintf(msg, sizeof(msg), "0x%02X", i);
-    		printf("%s", msg);
-		}
-        else
-		{
-			printf("%s", ".");
-		}
-	}
-
-	printf("%s", "\r\n");
-}
-
-void lcd1602_i2c_init(void)
-{
-    int i2c_master_port = I2C_MASTER_NUM;
-    i2c_config_t conf;
-    conf.mode = I2C_MODE_MASTER;
-    conf.sda_io_num = LCD1602_GPIO_SDA;
-    conf.sda_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.scl_io_num = LCD1602_GPIO_SCL;
-    conf.scl_pullup_en = GPIO_PULLUP_ENABLE;
-    conf.master.clk_speed = I2C_MASTER_FREQ_HZ;
-    i2c_param_config(i2c_master_port, &conf);
-    i2c_driver_install(i2c_master_port, conf.mode,
-                       I2C_MASTER_RX_BUF_DISABLE,
-                       I2C_MASTER_TX_BUF_DISABLE, 0);
-}
-
-//int cnt = 20;
-
-static void lcd1602_task(void* arg)
-{
-    lcd1602_i2c_init();
-	i2c_scan();
-	lcd1602_Init();
-
-	// set address to 0x00
-	lcd1602_SendCommand(0x80);
-    char* top_char2 = {"Hello"};
-    char top_char1[16] = {" "};
-    strcat(top_char1,top_char2);
-	lcd1602_SendString(top_char1);
-    char bot_char1[16] = {"World"};
-    //char* c = cnt +'0';
-	// set address to 0x40
-	lcd1602_SendCommand(0xC0);
-	lcd1602_SendString(bot_char1);
-    while(1)
-    {
-        printf(".\n");
-        vTaskDelay(1000 / portTICK_RATE_MS);
-    }
-}
-
-void task_rx(void *p)
-{
-
-   lcd1602_i2c_init();
-	i2c_scan();
-	lcd1602_Init();
-
-	// set address to 0x00
-
-   uint8_t buf[32];   
-   int x;
-   for(;;) {
-      lora_receive();    
-      while(lora_received()) {
-         x = lora_receive_packet(buf, sizeof(buf));
-         buf[x] = 0;
-		   ESP_LOGI(pcTaskGetName(NULL), "Received: %s", buf);         
-         lora_receive();
-	      lcd1602_SendCommand(0x80);
-         char* top_char = {"Received:"};
-	      lcd1602_SendString(top_char);
-	      lcd1602_SendCommand(0xC0);
-	      lcd1602_SendString(&buf);         
-      }
-      vTaskDelay(1);
-   }
-}
-
 
 void app_main()
-{
-/*
+{  
 	if (lora_init() == 0) {
 		ESP_LOGE(pcTaskGetName(NULL), "Does not recognize the module");
 		while(1) {
@@ -819,10 +641,7 @@ void app_main()
 
 	ESP_LOGI(pcTaskGetName(NULL), "Frequency is 915MHz");
 	lora_set_frequency(915e6); // 915MHz
-
 	lora_enable_crc();
-*/
 
-   xTaskCreate(&lcd1602_task, "lcd1602_task", 2048, (void* ) 0, 10, NULL);
-	//xTaskCreate(&task_rx, "task_rx", 1024*2, NULL, 5, NULL);
+	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 5, NULL);
 }
