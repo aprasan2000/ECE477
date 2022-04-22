@@ -28,10 +28,10 @@
 // ADC
 #define ESP_INTR_FLAG_DEFAULT 0
 #define V_REF 1100
-#define LOW_VOLTAGE 3500 // mV
+#define LOW_VOLTAGE 3600 // mV
 #define ADC_CORRECTION 0.977
 #define WINDOW_SIZE 4
-#define G_CUTOFF 2500
+#define G_CUTOFF 1000
 #define L_TO_H_COEFF 1.515
 
 // I2C
@@ -130,7 +130,7 @@ static spi_device_handle_t __spi;
 static int __implicit;
 static long __frequency;
 
-char hazard = 's';
+char* hazard = "Error    ";
 int sensing = 1;
 
 static void example_ledc_init(void)
@@ -166,16 +166,13 @@ void readPulse(void *arg)
    uint32_t reading, voltage;
    time_t start;
    int bigWindow = 10 * WINDOW_SIZE;
-   int arr[bigWindow], bpmArr[WINDOW_SIZE];
+   int arr[bigWindow];
    int count = 0;
    int sum = 0;
    float avg = 0;
    int pulse = 0;
    int prevPulse = 0;
-   int bpmCount = 0;
-   int bpmSum = 0;
-   float bpmAvg = 0;
-   float prevBPMAvg = 0;
+   // int beep = 0;
 
    if(err != ESP_OK)
    {
@@ -204,12 +201,16 @@ void readPulse(void *arg)
        // printf("Avg: %f mV\n", avg);
 
        // check if pulse
-       if(voltage > (avg + 400) && !prevPulse){
+       if(voltage > (avg + 400)){
          if(!prevPulse){
-           printf("Pulse\n");
-           gpio_set_level(GPIO_NUM_27, 1);
-           // ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY));
-           // ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+           // printf("Pulse\n");
+           if(count < 1200)
+           {
+             gpio_set_level(GPIO_NUM_27, 1);
+             ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY));
+             ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+             // beep = 1;
+           }
            pulse++;
            prevPulse = 1;
          }
@@ -221,112 +222,29 @@ void readPulse(void *arg)
 
        count++;
        vTaskDelay(pdMS_TO_TICKS(50));
-       gpio_set_level(GPIO_NUM_27, 0);
-       // ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY_ZERO));
-       // ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+       if(count < 1200)// && beep)
+       {
+         // beep = 0;
+         gpio_set_level(GPIO_NUM_27, 0);
+         ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY_ZERO));
+         ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
+       }
       }
-      int bpm = pulse * 2;
-      bpmArr[bpmCount % WINDOW_SIZE] = bpm;
-      bpmSum = 0;
-      for(int i = 0; i < WINDOW_SIZE; i++)
+      int bpm = pulse * 4;
+      // printf("BPM: %d\n", bpm);
+      if(count > 1200 && bpm > 180)
       {
-        bpmSum += bpmArr[i];
+        hazard = "High BPM ";
+        sensing = 0;
       }
-      bpmAvg = (float) bpmSum / WINDOW_SIZE; // takes 1 min to fully populate and read correctly
-      printf("BPM: %d\n", bpm);
-      printf("BPM Avg: %f\n", bpmAvg);
-      // if(bpmAvg > 0 && prevBPMAvg > 0 && bpmAvg > prevBPMAvg * 2)
-      // {
-      //   hazard = 'H';
-      //   sensing = 0;
-      // }
-      // if(bpmCount % WINDOW_SIZE == 0)
-      // {
-      //     prevBPMAvg = bpmAvg;
-      // }
+      if(count > 1200 && bpm < 40)
+      {
+        hazard = "Low BPM  ";
+        sensing = 0;
+      }
       pulse = 0;
-      bpmCount++;
    }
 }
-
-// void readPulse(void* arg)
-// {
-//   int arr[WINDOW_SIZE], bpmArr[WINDOW_SIZE];
-//   int bpmCount = 0;
-//   int count = 0;
-//   int sum = 0;
-//   int bpmSum = 0;
-//   int pulse = 0;
-//   float avg, bpmAvg;
-//   float prevAvg = 0;
-//   float prevBPMAvg = 0;
-//   bool trend;
-//   bool prevTrend = 0;
-//   esp_adc_cal_characteristics_t *adc_chars = calloc(1, sizeof(esp_adc_cal_characteristics_t));
-//   esp_adc_cal_value_t val_type = esp_adc_cal_characterize(ADC_UNIT_1, ADC_ATTEN_DB_11, ADC_WIDTH_BIT_12, V_REF, adc_chars);
-//   esp_err_t err = adc_set_data_inv(ADC_UNIT_1, 1);
-//   uint32_t reading, voltage;
-//   time_t start;
-//   if(err != ESP_OK)
-//   {
-//     printf("Pulse invert error\n");
-//     return;
-//   }
-//   while(1)
-//   {
-//     time(&start);
-//     while(time(NULL) < start + 15)
-//     {
-//       reading = adc1_get_raw(ADC1_CHANNEL_4);
-//       voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
-//       // printf("Voltage: %d mV\n", voltage);
-//       arr[count % WINDOW_SIZE] = voltage;
-//       sum = 0;
-//       for(int i = 0; i < WINDOW_SIZE; i++)
-//       {
-//         sum += arr[i];
-//       }
-//       avg = (float) sum / WINDOW_SIZE;
-//       trend = avg > prevAvg ? 1 : 0;
-//       if(trend && !prevTrend)
-//       {
-//         printf("Pulse\n");
-//         gpio_set_level(GPIO_NUM_27, 1);
-//         // ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY));
-//         // ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
-//         pulse++;
-//       }
-//       prevTrend = trend;
-//       prevAvg = avg;
-//       count++;
-//       vTaskDelay(pdMS_TO_TICKS(50));
-//       gpio_set_level(GPIO_NUM_27, 0);
-//       // ESP_ERROR_CHECK(ledc_set_duty(LEDC_MODE, LEDC_CHANNEL, LEDC_DUTY_ZERO));
-//       // ESP_ERROR_CHECK(ledc_update_duty(LEDC_MODE, LEDC_CHANNEL));
-//     }
-//     int bpm = pulse * 4;
-//     bpmArr[bpmCount % WINDOW_SIZE] = bpm;
-//     bpmSum = 0;
-//     for(int i = 0; i < WINDOW_SIZE; i++)
-//     {
-//       bpmSum += bpmArr[i];
-//     }
-//     bpmAvg = (float) bpmSum / WINDOW_SIZE;
-//     // printf("BPM: %d\n", bpm);
-//     // printf("BPM Avg: %f\n", bpmAvg);
-//     if(prevBPMAvg != 0 && bpmAvg > prevBPMAvg * 2)
-//     {
-//       hazard = 'H';
-//       sensing = 0;
-//     }
-//     if(bpmCount % WINDOW_SIZE == 0)
-//     {
-//         prevBPMAvg = bpmAvg;
-//     }
-//     pulse = 0;
-//     bpmCount++;
-//   }
-// }
 
 void readBatt(void* arg)
 {
@@ -348,7 +266,7 @@ void readBatt(void* arg)
         real_voltage = (uint32_t)(voltage * 2 * ADC_CORRECTION);
         printf("%d mV\n", real_voltage);
         if(real_voltage < LOW_VOLTAGE){
-            printf("LOW Battery\n");
+            // printf("LOW Battery\n");
             for(int i = 0; i < 10; i++){
                 // gpio_set_level(GPIO_NUM_27, i%2);
                 int duty = i % 2 ? LEDC_DUTY_ZERO : LEDC_DUTY;
@@ -465,9 +383,9 @@ static void freeFallHandler()
     // printf("%d\n", gpio_get_level(GPIO_NUM_18));
     if(gpio_get_level(GPIO_NUM_18) == 1)
     {
-      hazard = 'F';
+      hazard = "User Fell";
       sensing = 0;
-      printf("I've fallen and can't get up\n");
+      // printf("I've fallen and can't get up\n");
       for(int i = 0; i < 8; i++){
           gpio_set_level(GPIO_NUM_27, i%2);
           int duty = i % 2 ? LEDC_DUTY_ZERO : LEDC_DUTY;
@@ -1022,7 +940,7 @@ void task_tx(void *pvParameters)
   {
     if(!sensing)
     {
-      int send_len = sprintf((char *)buf,"ID 1919,CODE: %c", hazard);
+      int send_len = sprintf((char *)buf,"ID 1919,CODE: %s", hazard);
   		lora_send_packet(buf, send_len);
   		ESP_LOGI(pcTaskGetName(NULL), "%d byte packet sent...", send_len);
     }
@@ -1050,8 +968,8 @@ void button_task(void* arg)
   {
     vTaskSuspend(NULL); // runs interrupt once
     count++;
-    printf("Alert!\n");
-    hazard = 'B';
+    // printf("Alert!\n");
+    hazard = "Emergency";
     sensing = 0;
 
   }
@@ -1071,7 +989,15 @@ void readGas(void* arg)
     uint32_t reading, voltage, real_voltage, i;
     // Heat up gas sensor
     gpio_set_level(GPIO_NUM_25, 1);
-    vTaskDelay(pdMS_TO_TICKS(1*60*1000));
+
+    // for(int i = 0; i < 20; i++)
+    // {
+    //   reading = adc1_get_raw(ADC1_CHANNEL_5);
+    //   voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+    //   printf("Gas Voltage: %f\n", voltage * L_TO_H_COEFF);
+    //   vTaskDelay(pdMS_TO_TICKS(1*60*1000));
+    // }
+    vTaskDelay(pdMS_TO_TICKS(5*60*1000));
     while(1){
         // Turn on MOSFET (HIGH VOLTAGE)
         gpio_set_level(GPIO_NUM_25, 1);
@@ -1083,17 +1009,23 @@ void readGas(void* arg)
         gpio_set_level(GPIO_NUM_25, 0);
         // printf("...gas MOSFET off\n");
         // Wait 90 seconds
-        vTaskDelay(pdMS_TO_TICKS(90*1000));
-        // Read ADC
-        reading = adc1_get_raw(ADC1_CHANNEL_5);
-        voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
-        // printf("...raw voltage: %d mV\n", voltage);
-        // printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
-        if(voltage > G_CUTOFF)
-        {
-          hazard = 'g';
-          sensing = 0;
+        for(int i = 0; i < 9; i++){
+          vTaskDelay(pdMS_TO_TICKS(10*1000));
+          reading = adc1_get_raw(ADC1_CHANNEL_5);
+          voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+          // printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
+          if(voltage * L_TO_H_COEFF > G_CUTOFF)
+          {
+            hazard = "Gas Found";
+            sensing = 0;
+          }
         }
+        // vTaskDelay(pdMS_TO_TICKS(90*1000));
+        // Read ADC
+        // reading = adc1_get_raw(ADC1_CHANNEL_5);
+        // voltage = esp_adc_cal_raw_to_voltage(reading, adc_chars);
+        // // printf("...raw voltage: %d mV\n", voltage);
+        // printf("...corrected v: %f mV\n", voltage * L_TO_H_COEFF);
     }
     vTaskDelete(NULL);
 }
@@ -1102,7 +1034,7 @@ void app_main(void)
 {
   esp_rom_gpio_pad_select_gpio(GPIO_NUM_27);
   gpio_set_direction(GPIO_NUM_27, GPIO_MODE_OUTPUT);
-  gpio_set_level(GPIO_NUM_27, 0);
+  gpio_set_level(GPIO_NUM_27, 1);
 
   esp_rom_gpio_pad_select_gpio(GPIO_NUM_23); // accel pull down
   gpio_set_direction(GPIO_NUM_23, GPIO_MODE_OUTPUT);
@@ -1171,14 +1103,11 @@ void app_main(void)
 
   example_ledc_init();
 
-	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 10, NULL);
-  xTaskCreate(button_task, "button_task", 4096, NULL, 9, &ISR);
-  xTaskCreate(readBatt,"readBatt_task", 4096, NULL, 8, NULL);
-  xTaskCreate(readGas,"readGas_task", 4096, NULL, 7, NULL);
-  xTaskCreate(readPulse,"readPulse_task", 4096, NULL, 6, NULL);
+	xTaskCreate(&task_tx, "task_tx", 1024*2, NULL, 5, NULL);
+  xTaskCreate(button_task, "button_task", 4096, NULL, 5, &ISR);
+  xTaskCreate(readBatt,"readBatt_task", 4096, NULL, 5, NULL);
+  xTaskCreate(readGas,"readGas_task", 4096, NULL, 5, NULL);
+  xTaskCreate(readPulse,"readPulse_task", 4096, NULL, 5, NULL);
   xTaskCreate(freeFallHandler,"freeFallHandler_task", 4096, NULL, 5, NULL);
-
-
-
   return;
 }
